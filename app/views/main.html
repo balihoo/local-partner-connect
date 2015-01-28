@@ -1,23 +1,89 @@
-<div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
-  <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
-  </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
-</div>
+<!--
+    *
+    * Campaigns Tab Template
+    *
+ -->
+<div class="container pull-left">
 
-<div class="row marketing">
-  <h4>HTML5 Boilerplate</h4>
-  <p>
-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-  </p>
+  <!--<h2>Marketing Campaigns</h2>-->
+  <!--<div class="list-group" ng-repeat="campaign in campaigns">-->
+  <!--<h4 class="list-group-item-heading">{{campaign}}</h4>-->
+  <!--<div class="list-group-item-text">-->
+  <!--{{campaign}}-->
+  <!--</div>-->
+  <!--</div>-->
 
-  <h4>Angular</h4>
-  <p>
-    AngularJS is a toolset for building the framework most suited to your application development.
-  </p>
+  <div class="tab-content">
+    <!-- Start Campaigns Tab Pane -->
+    <div role="tabpanel" class="tab-pane active" id="campaigns">
+      <div class="row">
+        <!-- Start Campaigns List Group: Used to select Campaign -->
+        <div class="col-sm-4">
+          <h2>Marketing Campaigns</h2>
+          <div class="list-group" ng-repeat="campaign in campaigns">
+            <!-- Campaign List Group Item -->
+            <a href="#mold-cleanup" class="campaign-nav list-group-item active" role="tab" data-toggle="tab">
 
-  <h4>Karma</h4>
-  <p>Spectacular Test Runner for JavaScript.</p>
+              <h4 class="list-group-item-heading">{{campaign.title}}</h4>
+              <div class="list-group-item-text">
+                {{campaign.start | date: 'MM/dd/yyyy'}} - {{campaign.end | date: 'MM/dd/yyyy'}}
+              </div>
+
+            </a><!-- End Campaign List Group Item-->
+          </div>
+        </div><!-- End Campaigns List Group: Used to select Campaign -->
+        <!-- Start Campaign Main Content -->
+        <div class="col-sm-8">
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane campaign-content active" id="mold-cleanup" ng-repeat="tactic in tactics">
+              <h2>{{campaign.title}}</h2>
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-sm-1">
+                      <img src="http://placehold.it/50x50">
+                    </div>
+                    <div class="col-sm-11">
+                      <div class="row">
+                        <div class="col-sm-4">
+                          <h3 class="panel-title">{{tactic.title}}</h3>
+                        </div>
+                        <div class="col-sm-4">
+                          <p>({{tactic.channel}})</p>
+                        </div>
+                        <div class="col-sm-4">
+                          <p>{{tactic.start | date: 'MM/dd/yyyy'}} - {{tactic.end | date: 'MM/dd/yyyy'}}</p>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-3 text-center">
+                          <p>Clicks<br>
+                            0</p>
+                        </div>
+                        <div class="col-sm-3 text-center">
+                          <p>Impressions<br>
+                            0</p>
+                        </div>
+                        <div class="col-sm-3 text-center">
+                          <p>CTR<br>
+                            0.00%</p>
+                        </div>
+                        <div class="col-sm-3 text-center">
+                          <p>Cost<br>
+                            $0.00</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel-footer">
+                  <p>{{tactic.description}}</p>
+                </div>
+              </div>
+            </div><!-- End Campaign Main Content -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
