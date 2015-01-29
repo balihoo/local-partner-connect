@@ -1,6 +1,6 @@
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
 // bower:scss
-@import "../bower_components/bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower
 
 .browsehappy {
@@ -69,6 +69,10 @@ body {
 }
 
 /*Campaign Tab*/
+.campaign-nav {
+  cursor: pointer;
+}
+
 .campaign-thumbnail {
   vertical-align: middle;
 }

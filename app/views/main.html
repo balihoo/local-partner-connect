@@ -4,15 +4,6 @@
     *
  -->
 <div class="container pull-left">
-
-  <!--<h2>Marketing Campaigns</h2>-->
-  <!--<div class="list-group" ng-repeat="campaign in campaigns">-->
-  <!--<h4 class="list-group-item-heading">{{campaign}}</h4>-->
-  <!--<div class="list-group-item-text">-->
-  <!--{{campaign}}-->
-  <!--</div>-->
-  <!--</div>-->
-
   <div class="tab-content">
     <!-- Start Campaigns Tab Pane -->
     <div role="tabpanel" class="tab-pane active" id="campaigns">
@@ -22,7 +13,7 @@
           <h2>Marketing Campaigns</h2>
           <div class="list-group" ng-repeat="campaign in campaigns">
             <!-- Campaign List Group Item -->
-            <a href="#mold-cleanup" class="campaign-nav list-group-item active" role="tab" data-toggle="tab">
+            <a ng-click="loadTactics(campaign.id)" class="campaign-nav list-group-item active" role="tab" data-toggle="tab">
 
               <h4 class="list-group-item-heading">{{campaign.title}}</h4>
               <div class="list-group-item-text">

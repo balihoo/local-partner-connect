@@ -4,43 +4,9 @@
  * Created by jlutz on 1/21/15.
  */
 
-//$allData = '[
-//  {
-//    "id": 34,
-//    "title": "Test Campaign",
-//    "start" : "2014-01-02",
-//    "end": "2014-06-05",
-//    "status": "active",
-//    "tactics":  [
-//      {
-//        "id": 12,
-//        "title": "Tactic Name",
-//        "start" : "2014-05-02",
-//        "end": "2014-06-05",
-//        "channel": "Email",
-//        "description": "A tactic description would go here if it exists"
-//      },
-//      {
-//        "id": 24,
-//        "title": "Another Tactic Name",
-//        "start" : "2014-01-02",
-//        "end": "2014-01-12",
-//        "channel": "Display",
-//        "description": "Another tactic description would go here if it exists"
-//      }
-//    ]
-//  },
-//  {
-//    "id": 23,
-//    "title": "Another Campaign",
-//    "start" : "2014-01-02",
-//    "end": "2014-01-28",
-//    "status": "active",
-//    "tactics": []
-//  }
-//]';
-//
-//echo $allData;
+//CORS
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Headers: X-Requested-With');
 
 switch ($_GET['type']) {
     case 'getCampaigns':
@@ -75,9 +41,12 @@ function getCampaigns() {
 }
 
 function getTacticsForCampaign($campaignId) {
-    $tactics = '[
+
+    switch($campaignId) {
+        case '34':
+            $tactics = '[
       {
-        "id": 12,
+        "id": 34,
         "title": "Tactic Name",
         "start" : "2014-05-02",
         "end": "2014-06-05",
@@ -85,14 +54,29 @@ function getTacticsForCampaign($campaignId) {
         "description": "A tactic description would go here if it exists"
       },
       {
-        "id": 24,
+        "id": 34,
         "title": "Another Tactic Name",
-        "start" : "2014-01-02",
-        "end": "2014-01-12",
+        "start" : "2014-07-13",
+        "end": "2014-09-20",
         "channel": "Display",
         "description": "Another tactic description would go here if it exists"
       }
     ]';
+            break;
+
+        case '23':
+            $tactics = '[
+      {
+        "id": 23,
+        "title": "Yet Another Tactic Name",
+        "start" : "2014-01-02",
+        "end": "2014-01-12",
+        "channel": "Display",
+        "description": "Yet another tactic description would go here if it exists"
+      }
+    ]';
+            break;
+    }
 
     echo $tactics;
 }

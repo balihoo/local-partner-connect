@@ -15,9 +15,6 @@ module.exports = function (grunt) {
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
-  // Add php support for local testing
-  var gateway = require('gateway');
-
   // Configurable paths for the application
   var appConfig = {
     app: require('./bower.json').appPath || 'app',
@@ -84,10 +81,7 @@ module.exports = function (grunt) {
                 '/bower_components',
                 connect.static('./bower_components')
               ),
-              connect.static(appConfig.app),
-                gateway(__direname + '/app', {
-                  '.php': 'php-cgi'
-                }),
+              connect.static(appConfig.app)
             ];
           }
         }
