@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name locationPluginApp.controller:MainCtrl
+ * @name locationPluginApp.controller:CampaignCtrl
  * @description
- * # MainCtrl
+ * # CampaignCtrl
  * Controller of the locationPluginApp
  */
 angular.module('locationPluginApp')
-    .controller('MainCtrl', ['$scope', '$http', '$q', function ($scope, $http, $q) {
+    .controller('CampaignCtrl', ['$scope', '$q', function ($scope, $q) {
 
         $q.when(mockApi.getCampaigns()).then(function(campaignsData) {
             return $scope.campaigns = campaignsData;
