@@ -5,10 +5,16 @@
 
 'use strict';
 
+var apiKey = 'a2f8624e-1594-47ed-9854-d0333e39d9cf';
+var brandKey= 'snap';
+var locationId = 'loc';
+var userId = 'user';
+var groupId ='group';
+
 var mockApi = {
 
-    getBrandAPIKey: function() {
-        return $.getJSON('http://bac.dev.balihoo-cloud.com/localdata/v1.0/genBrandAPIKey?callback=?').then( function(data) {
+    getClientAPIKey: function() {
+        return $.post('http://localhost:8888/location-plugin/app/scripts/libraries/mockApi.php', { apiKey: apiKey, brandKey: brandKey, locationId: locationId, userId: userId, groupId: groupId }, 'json' ).then( function(data) {
             console.log(data);
         });
     },
