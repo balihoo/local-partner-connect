@@ -25,7 +25,7 @@ angular
             templateUrl: 'views/campaigns.html',
             controller: 'CampaignCtrl'
           })
-          .when('/about', {
+          .when('/localWebsite', {
             templateUrl: 'views/localWebsite.html',
             controller: 'LocalWebsiteCtrl'
           })
@@ -33,16 +33,26 @@ angular
             redirectTo: '/'
           });
     })
-    .controller('AuthenticationCtrl', ['$scope', '$http', '$q', function ($scope, $http, $q) {
+    .controller('MainCtrl', function($scope, $rootScope, $location) {
+        $scope.menu = [
+            {label: 'Campaigns', route: '/campaigns'},
+            {label: 'Local Website', route: '/localWebsite'}
+        ]
 
-      mockApi.getBrandAPIKey();
+        $scope.menuActive = '/';
 
-      //$q.when(mockApi.getCampaigns()).then(function(campaignsData) {
-      //    return $scope.campaigns = campaignsData;
-      //}).then(function(tacticsData) {
-      //    $q.when(mockApi.getTacticsForCampaign(tacticsData[0].id).then(function(data) {
-      //        return $scope.tactics = data;
-      //    }));
-      //});
+        $rootScope.$on('$routeChangeSuccess', function() {
+           $scope.menuActive = $location.path();
+        });
+    });
 
-    }]);
+function Authentication() {
+    return {
+        authenticate: function () {
+            $q.when(mockApi.getClientAPIKey()).then(function (authenticationData) {
+                return authenticationData;
+            });
+
+        }
+    };
+}

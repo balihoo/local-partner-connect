@@ -13,7 +13,7 @@
           <h2>Marketing Campaigns</h2>
           <div class="list-group" ng-repeat="campaign in campaigns">
             <!-- Campaign List Group Item -->
-            <a ng-click="loadTactics(campaign.id)" class="campaign-nav list-group-item active" role="tab" data-toggle="tab">
+            <a ng-click="loadTactics(campaign.id); $parent.selected = campaign" class="campaign-nav list-group-item" ng-class="{active: selected == campaign}">
 
               <h4 class="list-group-item-heading">{{campaign.title}}</h4>
               <div class="list-group-item-text">
@@ -26,7 +26,7 @@
         <!-- Start Campaign Main Content -->
         <div class="col-sm-8">
           <div class="tab-content">
-            <div role="tabpanel" class="tab-pane campaign-content active" id="mold-cleanup" ng-repeat="tactic in tactics">
+            <div role="tabpanel" class="tab-pane campaign-content active" id="{{campaign.id}}" ng-repeat="tactic in tactics">
               <h2>{{campaign.title}}</h2>
               <div class="panel panel-default">
                 <div class="panel-body">

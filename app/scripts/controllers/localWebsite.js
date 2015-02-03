@@ -2,9 +2,9 @@
 
 /**
  * @ngdoc function
- * @name locationPluginApp.controller:AboutCtrl
+ * @name locationPluginApp.controller:LocalWebsiteCtrl
  * @description
- * # AboutCtrl
+ * # LocalWebsiteCtrl
  * Controller of the locationPluginApp
  */
 angular.module('locationPluginApp')

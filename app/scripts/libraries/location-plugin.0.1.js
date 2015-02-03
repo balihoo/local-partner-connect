@@ -5,32 +5,32 @@
 
 'use strict';
 
-var apiKey = 'a2f8624e-1594-47ed-9854-d0333e39d9cf';
-var brandKey= 'snap';
-var locationId = 'loc';
-var userId = 'user';
-var groupId ='group';
+function mockApi(apiKey, brandKey, locationId, userId, groupId) {
 
-var mockApi = {
+    this.apiKey = apiKey;
+    this.brandKey = brandKey;
+    this.locationId = locationId;
+    this.userId = userId;
+    this.groupId = groupId;
 
-    getClientAPIKey: function() {
+    this.getClientAPIKey = function() {
         return $.post('http://localhost:8888/location-plugin/app/scripts/libraries/mockApi.php', { apiKey: apiKey, brandKey: brandKey, locationId: locationId, userId: userId, groupId: groupId }, 'json' ).then( function(data) {
             console.log(data);
         });
-    },
+    };
 
-    getCampaigns: function() {
+    this.getCampaigns = function() {
         return $.getJSON('http://localhost:8888/location-plugin/app/scripts/libraries/mockApi.php', {type: 'getCampaigns'}).then( function(data) {
             return data;
         });
-    },
+    };
 
-    getTacticsForCampaign: function(campaignId) {
+    this.getTacticsForCampaign = function(campaignId) {
         return $.getJSON('http://localhost:8888/location-plugin/app/scripts/libraries/mockApi.php', {
             type: 'getTacticsForCampaign',
             param: campaignId
         }).then( function(data) {
             return data;
         });
-    }
-};
+    };
+}
