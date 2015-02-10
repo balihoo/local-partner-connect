@@ -15,18 +15,22 @@ $method = $_SERVER['REQUEST_METHOD'];
 
 switch ($method) {
 
-    case 'GET':
-        if ($_GET['type'] == 'getCampaigns') {
-            getCampaigns();
-        }
-        else if ($_GET['type'] == 'getTacticsForCampaign') {
-            $param = $_GET['param'];
-            getTacticsForCampaign($param);
-        }
-        break;
-
     case 'POST':
         getClientAPIKey();
+        break;
+
+    case 'GET':
+        if ($_GET['type'] == 'getCampaigns') {
+            $clientId = $_GET['clientId'];
+            $clientApiKey = $_GET['clientApiKey'];
+            getCampaigns($clientId, $clientApiKey);
+        }
+        else if ($_GET['type'] == 'getTacticsForCampaign') {
+            $campaignId = $_GET['campaignId'];
+            $clientId = $_GET['clientId'];
+            $clientApiKey = $_GET['clientApiKey'];
+            getTacticsForCampaign($campaignId, $clientId, $clientApiKey);
+        }
         break;
 }
 
@@ -48,64 +52,33 @@ function getClientAPIKey() {
     curl_close($ch);
 }
 
-function getCampaigns() {
-    $campaigns = '[
-  {
-    "id": 34,
-    "title": "Test Campaign",
-    "start" : "2014-05-02",
-    "end": "2014-06-05",
-    "status": "active"
-  },
-  {
-    "id": 23,
-    "title": "Another Campaign",
-    "start" : "2014-01-02",
-    "end": "2014-01-28",
-    "status": "active"
-  }
-]';
+function getCampaigns($clientId, $clientApiKey) {
+    $url = 'http://bac.dev.balihoo-cloud.com/localdata/v1.0/campaigns?callback=campaignData';
 
-    echo $campaigns;
+    $ch = curl_init();
+
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array('X-ClientId: ' . $clientId,'X-ClientApiKey: ' . $clientApiKey));
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+    $server_output = curl_exec($ch);
+    echo $server_output;
+
+    curl_close($ch);
 }
 
-function getTacticsForCampaign($campaignId) {
+function getTacticsForCampaign($campaignId, $clientId, $clientApiKey) {
 
-    switch($campaignId) {
-        case '34':
-            $tactics = '[
-      {
-        "id": 34,
-        "title": "Tactic Name",
-        "start" : "2014-05-02",
-        "end": "2014-06-05",
-        "channel": "Email",
-        "description": "A tactic description would go here if it exists"
-      },
-      {
-        "id": 34,
-        "title": "Another Tactic Name",
-        "start" : "2014-07-13",
-        "end": "2014-09-20",
-        "channel": "Display",
-        "description": "Another tactic description would go here if it exists"
-      }
-    ]';
-            break;
+    $url = 'http://bac.dev.balihoo-cloud.com/localdata/v1.0/campaign/' . $campaignId . '/tactics?callback=tacticData';
 
-        case '23':
-            $tactics = '[
-      {
-        "id": 23,
-        "title": "Yet Another Tactic Name",
-        "start" : "2014-01-02",
-        "end": "2014-01-12",
-        "channel": "Display",
-        "description": "Yet another tactic description would go here if it exists"
-      }
-    ]';
-            break;
-    }
+    $ch = curl_init();
 
-    echo $tactics;
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array('X-ClientId: ' . $clientId,'X-ClientApiKey: ' . $clientApiKey));
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+    $server_output = curl_exec($ch);
+    echo $server_output;
+
+    curl_close($ch);
 }

@@ -5,32 +5,58 @@
 
 'use strict';
 
-function mockApi(apiKey, brandKey, locationId, userId, groupId) {
+function MockApi() {
 
-    this.apiKey = apiKey;
-    this.brandKey = brandKey;
-    this.locationId = locationId;
-    this.userId = userId;
-    this.groupId = groupId;
+    // API parameters - Move to a config file?
+    this.apiKey = '4b5a4def-e6e2-433d-aa75-9ccfb4652563';
+    this.brandKey= 'dental';
+    this.locationId = '5551212';
+    this.userId = 'user';
+    this.groupId ='group';
 
     this.getClientAPIKey = function() {
-        return $.post('http://localhost:8888/location-plugin/app/scripts/libraries/mockApi.php', { apiKey: apiKey, brandKey: brandKey, locationId: locationId, userId: userId, groupId: groupId }, 'json' ).then( function(data) {
-            console.log(data);
+        var url = 'http://localhost:8888/location-plugin/app/scripts/libraries/mockApi.php';
+
+        return $.ajax({
+            type: 'POST',
+            url: url,
+            data: {
+                apiKey: this.apiKey,
+                brandKey: this.brandKey,
+                locationId: this.locationId,
+                userId: this.userId,
+                groupId: this.groupId
+            },
+            async: true,
+            dataType: 'json'
         });
     };
 
-    this.getCampaigns = function() {
-        return $.getJSON('http://localhost:8888/location-plugin/app/scripts/libraries/mockApi.php', {type: 'getCampaigns'}).then( function(data) {
-            return data;
+    this.getCampaigns = function(clientId, clientApiKey) {
+        var url = 'http://localhost:8888/location-plugin/app/scripts/libraries/mockApi.php';
+
+        return $.ajax({
+            type: 'GET',
+            url: url,
+            data: {type: 'getCampaigns', clientId: clientId, clientApiKey: clientApiKey},
+            async: true,
+            jsonpCallback: 'campaignData',
+            contentType: "application/json",
+            dataType: 'jsonp'
         });
     };
 
-    this.getTacticsForCampaign = function(campaignId) {
-        return $.getJSON('http://localhost:8888/location-plugin/app/scripts/libraries/mockApi.php', {
-            type: 'getTacticsForCampaign',
-            param: campaignId
-        }).then( function(data) {
-            return data;
+    this.getTacticsForCampaign = function(campaignId, clientId, clientApiKey) {
+        var url = 'http://localhost:8888/location-plugin/app/scripts/libraries/mockApi.php';
+
+        return $.ajax({
+            type: 'GET',
+            url: url,
+            data: {type: 'getTacticsForCampaign', campaignId: campaignId, clientId: clientId, clientApiKey: clientApiKey},
+            async: true,
+            jsonpCallback: 'tacticData',
+            contentType: "application/json",
+            dataType: 'jsonp'
         });
     };
 }

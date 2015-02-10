@@ -37,7 +37,7 @@ angular
         $scope.menu = [
             {label: 'Campaigns', route: '/campaigns'},
             {label: 'Local Website', route: '/localWebsite'}
-        ]
+        ];
 
         $scope.menuActive = '/';
 
@@ -46,13 +46,15 @@ angular
         });
     });
 
-function Authentication() {
-    return {
-        authenticate: function () {
-            $q.when(mockApi.getClientAPIKey()).then(function (authenticationData) {
-                return authenticationData;
-            });
+    // Add authentication service here? -jlutz
 
-        }
-    };
-}
+    //.factory('AuthenticationService', function($q) {
+    //    return {
+    //        authenticate: function (client) {
+    //            $q.when(client.getClientAPIKey()).then(function (authenticationData) {
+    //                //console.log(authenticationData);
+    //                return authenticationData;
+    //            });
+    //        }
+    //    }
+    //});
