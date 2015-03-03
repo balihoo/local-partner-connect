@@ -8,10 +8,11 @@
  * Controller of the locationPluginApp
  */
 angular.module('locationPluginApp')
-  .controller('LocalWebsiteCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+  .controller('LocalWebsiteCtrl', ['$scope', '$q', function ($scope, $q) {
+
+    //$q.when(connection.getWebsiteMetrics())
+    //  .then(function (websiteMetrics) {
+    //    console.log(websiteMetrics);
+    //  });
+
+  }]);

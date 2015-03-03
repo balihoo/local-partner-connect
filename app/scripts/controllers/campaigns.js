@@ -8,38 +8,75 @@
  * Controller of the locationPluginApp
  */
 angular.module('locationPluginApp')
-    .controller('CampaignCtrl', ['$scope', '$q', function ($scope, $q) {
-        var client = new MockApi();
+  .controller('CampaignCtrl', ['$scope', '$q', function ($scope, $q) {
 
-        // Add authentication service in app.js? -jlutz
+    //API parameters - Move to a config file?
+    var apiKey = '81636bdb-d1ef-4364-8b57-bf7683ded94b';
+    var brandKey = 'dental';
+    var locationId = '27';
+    var userId = 'user';
+    var groupId = 'group';
 
-        //this.authenticateClient = function(client) {
-        //    return AuthenticationService.authenticate(client)
-        //        .then(function(response) {
-        //            return response;
-        //        });
-        //};
-        //console.log(this.authenticateClient(client));
+    var getClientCreds = function (apiKey, brandKey, locationId, userId, groupId) {
+      var url = 'http://localhost:8888/location-plugin/app/scripts/libraries/clientAuth.php';
 
-        $q.when(client.getClientAPIKey()).then(function(clientData) {
-            $scope.clientData = clientData;
-            return clientData;
-        }).then(function(clientData) {
-            // Get all campaigns and their associated tactics
-            $q.when(client.getCampaigns(clientData.clientId, clientData.clientApiKey)).then(function (campaignsData) {
-                $scope.selected = campaignsData[0];
-                return $scope.campaigns = campaignsData;
-            }).then(function (tacticsData) {
-                $q.when(client.getTacticsForCampaign(tacticsData[0].id, clientData.clientId, clientData.clientApiKey).then(function (data) {
-                    return $scope.tactics = data.tactics;
-                }));
-            });
-        });
+      return $.ajax({
+        type: 'POST',
+        url: url,
+        data: {
+          apiKey: apiKey,
+          brandKey: brandKey,
+          locationId: locationId,
+          userId: userId,
+          groupId: groupId
+        },
+        async: true,
+        dataType: 'json'
+      });
+    };
+
+    $q.when(getClientCreds(apiKey, brandKey, locationId, userId, groupId))
+      .then(function (clientCreds) {
+        var connection = new balihoo.LocalConnection(clientCreds.clientId, clientCreds.clientApiKey);
+        return $scope.connection = connection;
+      })
+      .then(function (connection) {
+        $q.when(connection.getAllCampaigns())
+          .then(function (allCampaigns) {
+            $scope.selected = allCampaigns[0];
+            return $scope.campaigns = allCampaigns;
+          })
+          .then(function (campaigns) {
+            $q.when(connection.getAllTactics(campaigns[0].id))
+              .then(function (allTactics) {
+                return $scope.tactics = allTactics.tactics;
+              })
+              .then(function (tactics) {
+                angular.forEach(tactics, function(tactic, key) {
+                  $q.when(connection.getMetricsForTactic(tactic.id))
+                    .then(function (metrics) {
+                      angular.extend($scope.tactics[key], metrics);
+                    })
+                })
+              });
+          });
 
         // Click listener for loading tactics
         $scope.loadTactics = function(id) {
-            $q.when(client.getTacticsForCampaign(id, $scope.clientData.clientId, $scope.clientData.clientApiKey).then(function(data) {
-                return $scope.tactics = data.tactics;
-            }));
+          $q.when($scope.connection.getAllTactics(id))
+            .then(function (allTactics) {
+              return $scope.tactics = allTactics.tactics;
+            })
+            .then(function (tactics) {
+              angular.forEach(tactics, function(tactic, key) {
+                $q.when(connection.getMetricsForTactic(tactic.id))
+                  .then(function (metrics) {
+                    angular.extend($scope.tactics[key], metrics);
+                  })
+              })
+            });
         };
-    }]);
+
+      });
+
+  }]);

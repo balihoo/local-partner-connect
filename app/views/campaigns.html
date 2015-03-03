@@ -11,7 +11,7 @@
         <!-- Start Campaigns List Group: Used to select Campaign -->
         <div class="col-sm-4">
           <h2>Marketing Campaigns</h2>
-          <div class="list-group" ng-repeat="campaign in campaigns">
+          <div class="list-group" ng-repeat="campaign in campaigns | orderBy: 'id'">
             <!-- Campaign List Group Item -->
             <a ng-click="loadTactics(campaign.id); $parent.selected = campaign" class="campaign-nav list-group-item" ng-class="{active: selected == campaign}">
 
@@ -26,7 +26,7 @@
         <!-- Start Campaign Main Content -->
         <div class="col-sm-8">
           <div class="tab-content">
-            <div role="tabpanel" class="tab-pane campaign-content active" id="{{campaign.id}}" ng-repeat="tactic in tactics">
+            <div role="tabpanel" class="tab-pane campaign-content active" id="{{campaign.id}}" ng-repeat="tactic in tactics | orderBy: 'id'">
               <h2>{{campaign.title}}</h2>
               <div class="panel panel-default">
                 <div class="panel-body">
@@ -46,22 +46,72 @@
                           <p>{{tactic.start | date: 'MM/dd/yyyy'}} - {{tactic.end | date: 'MM/dd/yyyy'}}</p>
                         </div>
                       </div>
-                      <div class="row">
+                      <div class="row" ng-if="tactic.channel == 'Email'">
                         <div class="col-sm-3 text-center">
-                          <p>Clicks<br>
-                            0</p>
+                          <p>Sent<br>
+                            {{tactic.sends ? tactic.sends : "---"}}</p>
                         </div>
                         <div class="col-sm-3 text-center">
-                          <p>Impressions<br>
-                            0</p>
+                          <p>Open<br>
+                            {{tactic.opens ? tactic.opens : "---"}}</p>
                         </div>
                         <div class="col-sm-3 text-center">
-                          <p>CTR<br>
-                            0.00%</p>
+                          <p>Clicked<br>
+                            {{tactic.clicks ? tactic.clicks : "---"}}</p>
+                        </div>
+                      </div>
+                      <div class="row" ng-if="tactic.channel == 'Direct Mail'">
+                        <div class="col-sm-3 text-center">
+                            <p>Clicks<br>
+                                0</p>
                         </div>
                         <div class="col-sm-3 text-center">
-                          <p>Cost<br>
-                            $0.00</p>
+                            <p>Impressions<br>
+                                0</p>
+                        </div>
+                        <div class="col-sm-3 text-center">
+                            <p>CTR<br>
+                                0.00%</p>
+                        </div>
+                        <div class="col-sm-3 text-center">
+                            <p>Cost<br>
+                                $0.00</p>
+                        </div>
+                      </div>
+                      <div class="row" ng-if="tactic.channel == 'Display'">
+                        <div class="col-sm-3 text-center">
+                            <p>Clicks<br>
+                                0</p>
+                        </div>
+                        <div class="col-sm-3 text-center">
+                            <p>Impressions<br>
+                                0</p>
+                        </div>
+                        <div class="col-sm-3 text-center">
+                            <p>CTR<br>
+                                0.00%</p>
+                        </div>
+                        <div class="col-sm-3 text-center">
+                            <p>Cost<br>
+                                $0.00</p>
+                        </div>
+                      </div>
+                      <div class="row" ng-if="tactic.channel == 'Paid Search'">
+                        <div class="col-sm-3 text-center">
+                            <p>Clicks<br>
+                                0</p>
+                        </div>
+                        <div class="col-sm-3 text-center">
+                            <p>Impressions<br>
+                                0</p>
+                        </div>
+                        <div class="col-sm-3 text-center">
+                            <p>CTR<br>
+                                0.00%</p>
+                        </div>
+                        <div class="col-sm-3 text-center">
+                            <p>Cost<br>
+                                $0.00</p>
                         </div>
                       </div>
                     </div>
