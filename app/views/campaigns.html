@@ -11,13 +11,13 @@
         <!-- Start Campaigns List Group: Used to select Campaign -->
         <div class="col-sm-4">
           <h2>Marketing Campaigns</h2>
-          <div class="list-group" ng-repeat="campaign in campaigns | orderBy: 'id'">
+          <div class="list-group">
             <!-- Campaign List Group Item -->
-            <a ng-click="loadTactics(campaign.id); $parent.selected = campaign" class="campaign-nav list-group-item" ng-class="{active: selected == campaign}">
+            <a class="campaign-nav list-group-item" ng-repeat="campaign in campaigns | orderBy: 'id'" ng-click="loadTactics(campaign.id); $parent.selected = campaign" ng-class="{active: selected == campaign}">
 
               <h4 class="list-group-item-heading">{{campaign.title}}</h4>
               <div class="list-group-item-text">
-                {{campaign.start | date: 'MM/dd/yyyy'}} - {{campaign.end | date: 'MM/dd/yyyy'}}
+                <p>{{campaign.start | date: 'MM/dd/yyyy'}} - {{campaign.end | date: 'MM/dd/yyyy'}}</p>
               </div>
 
             </a><!-- End Campaign List Group Item-->
@@ -29,23 +29,25 @@
             <div role="tabpanel" class="tab-pane campaign-content active" id="{{campaign.id}}" ng-repeat="tactic in tactics | orderBy: 'id'">
               <h2>{{campaign.title}}</h2>
               <div class="panel panel-default">
+                <div class="panel-heading">
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <p class="panel-title">{{tactic.title}}</p>
+                    </div>
+                    <div class="col-sm-4">
+                      <p class="no-space-after"><strong>Channel:</strong> {{tactic.channel}}</p>
+                    </div>
+                    <div class="col-sm-4">
+                      <p class="no-space-after"><strong>Runs:</strong> {{tactic.start | date: 'MM/dd/yyyy'}} - {{tactic.end | date: 'MM/dd/yyyy'}}</p>
+                    </div>
+                  </div>
+                </div>
                 <div class="panel-body">
                   <div class="row">
-                    <div class="col-sm-1">
+                    <div class="col-sm-2">
                       <img src="http://placehold.it/50x50">
                     </div>
-                    <div class="col-sm-11">
-                      <div class="row">
-                        <div class="col-sm-4">
-                          <h3 class="panel-title">{{tactic.title}}</h3>
-                        </div>
-                        <div class="col-sm-4">
-                          <p>({{tactic.channel}})</p>
-                        </div>
-                        <div class="col-sm-4">
-                          <p>{{tactic.start | date: 'MM/dd/yyyy'}} - {{tactic.end | date: 'MM/dd/yyyy'}}</p>
-                        </div>
-                      </div>
+                    <div class="col-sm-10">
                       <div class="row" ng-if="tactic.channel == 'Email'">
                         <div class="col-sm-3 text-center">
                           <p>Sent<br>
@@ -114,11 +116,14 @@
                                 $0.00</p>
                         </div>
                       </div>
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <hr>
+                          <p>{{tactic.description}}</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="panel-footer">
-                  <p>{{tactic.description}}</p>
                 </div>
               </div>
             </div><!-- End Campaign Main Content -->
