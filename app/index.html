@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js h100">
 <head>
   <meta charset="utf-8">
   <title></title>
@@ -14,18 +14,30 @@
   <link rel="stylesheet" href="styles/main.css">
   <!-- endbuild -->
 </head>
-<body ng-app="locationPluginApp" ng-controller="MainCtrl">
+<body class="h100" ng-app="locationPluginApp" ng-controller="MainCtrl">
 
 <!-- Add your site or application content here -->
-<div class="container">
-  <div class="header">
-    <h3 class="text-muted">Balihoo Location Plugin Demo</h3>
-      <ul class="nav nav-tabs">
-        <li ng-repeat="item in menu" ng-class="{active: item.route == menuActive}"><a ng-href="#{{item.route}}">{{item.label}}</a></li>
-      </ul>
-  </div>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#primary-navigation">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="primary-navigation">
+        <ul class="nav navbar-nav">
+          <li ng-repeat="item in menu" ng-class="{active: item.route == menuActive}"><a ng-href="#{{item.route}}">{{item.label}}</a></li>
+        </ul>
+      </div>
+    </div>
+</nav>
 
-  <div ng-view=""></div>
+<div class="container h100">
+
+  <div class="h100" ng-view=""></div>
 
 </div>
 

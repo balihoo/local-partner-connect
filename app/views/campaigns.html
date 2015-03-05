@@ -3,14 +3,13 @@
     * Campaigns Tab Template
     *
  -->
-<div class="container pull-left">
-  <div class="tab-content">
+<div class="container pull-left h100">
+  <div class="tab-content h100">
     <!-- Start Campaigns Tab Pane -->
-    <div role="tabpanel" class="tab-pane active" id="campaigns">
-      <div class="row">
+    <div role="tabpanel" class="tab-pane active h100" id="campaigns">
+      <div class="row h100">
         <!-- Start Campaigns List Group: Used to select Campaign -->
-        <div class="col-sm-4">
-          <h2>Marketing Campaigns</h2>
+        <div class="col-sm-4 col-campaigns">
           <div class="list-group">
             <!-- Campaign List Group Item -->
             <a class="campaign-nav list-group-item" ng-repeat="campaign in campaigns | orderBy: 'id'" ng-click="loadTactics(campaign.id); $parent.selected = campaign" ng-class="{active: selected == campaign}">
@@ -24,10 +23,9 @@
           </div>
         </div><!-- End Campaigns List Group: Used to select Campaign -->
         <!-- Start Campaign Main Content -->
-        <div class="col-sm-8">
+        <div class="col-sm-8 col-tactics">
           <div class="tab-content">
             <div role="tabpanel" class="tab-pane campaign-content active" id="{{campaign.id}}" ng-repeat="tactic in tactics | orderBy: 'id'">
-              <h2>{{campaign.title}}</h2>
               <div class="panel panel-default">
                 <div class="panel-heading">
                   <div class="row">
