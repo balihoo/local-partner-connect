@@ -35,7 +35,7 @@ angular
     })
     .controller('MainCtrl', function($scope, $rootScope, $location) {
         $scope.menu = [
-            {label: 'Campaigns', route: '/campaigns'},
+            {label: 'Campaigns', route: '/'},
             {label: 'Local Website', route: '/localWebsite'}
         ];
 
