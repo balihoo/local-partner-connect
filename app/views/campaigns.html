@@ -29,14 +29,14 @@
               <div class="panel panel-default">
                 <div class="panel-heading">
                   <div class="row">
-                    <div class="col-sm-4">
+                    <div class="col-sm-5">
                       <p class="panel-title">{{tactic.title}}</p>
                     </div>
-                    <div class="col-sm-4">
-                      <p class="no-space-after"><strong>Channel:</strong> {{tactic.channel}}</p>
+                    <div class="col-sm-2">
+                      <p class="no-space-after"><span class="label label-primary">{{tactic.channel}}</span></p>
                     </div>
-                    <div class="col-sm-4">
-                      <p class="no-space-after"><strong>Runs:</strong> {{tactic.start | date: 'MM/dd/yyyy'}} - {{tactic.end | date: 'MM/dd/yyyy'}}</p>
+                    <div class="col-sm-5">
+                      <p class="no-space-after"><small>{{tactic.start | date: 'MMM dd, yyyy'}} - {{tactic.end | date: 'MMM dd, yyyy'}}</small></p>
                     </div>
                   </div>
                 </div>
@@ -114,12 +114,12 @@
                               <span class="bh-metric-label">Cost</span></p>
                         </div>
                       </div>
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <hr>
-                          <p>{{tactic.description}}</p>
-                        </div>
-                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <hr>
+                      <p>{{tactic.description}}</p>
                     </div>
                   </div>
                 </div>
