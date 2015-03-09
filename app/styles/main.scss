@@ -1,0 +1,64 @@
+$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+
+// Balihoo Bootstrap Custom Theme, Variable Overrides.
+@import "variables";
+
+// bower:scss
+@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+// endbower
+
+// Balihoo Bootstrap Custom Theme, Custom Styles
+@import "custom";
+
+
+/*******************
+ *
+ *  Author Styles for Location Plugin
+ *
+ *******************/
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: $screen-sm-min) {
+  .h100 {
+    height: 100%;
+  }
+
+  .col-campaigns, .col-tactics {
+    height: 100%;
+    padding-top: 80px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;
+  }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: $screen-md-min) {}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: $screen-lg-min) {}
+
+/*Campaign Tab*/
+
+// .campaign-thumbnail {
+//   vertical-align: middle;
+// }
+// .campaign-content .page-header {
+//   margin: 20px 0 10px 0;
+//   border-bottom: 0;
+// }
+// .results li:after {
+//   content: "";
+//   display: table;
+//   clear: both;
+// }
+// .results span {
+//   display: block;
+//   float: left;
+// }
+// .results-data {
+//   width: 30%;
+// }
+// .results-label {
+//   width: 70%;
+// }

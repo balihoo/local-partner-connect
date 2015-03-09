@@ -1,0 +1,133 @@
+<!--
+    *
+    * Campaigns Tab Template
+    *
+ -->
+<div class="container pull-left h100">
+  <div class="tab-content h100">
+    <!-- Start Campaigns Tab Pane -->
+    <div role="tabpanel" class="tab-pane active h100" id="campaigns">
+      <div class="row h100">
+        <!-- Start Campaigns List Group: Used to select Campaign -->
+        <div class="col-sm-4 col-campaigns">
+          <div class="list-group">
+            <!-- Campaign List Group Item -->
+            <a class="campaign-nav list-group-item" ng-repeat="campaign in campaigns | orderBy: 'id'" ng-click="loadTactics(campaign.id); $parent.selected = campaign" ng-class="{active: selected == campaign}">
+
+              <h4 class="list-group-item-heading">{{campaign.title}}</h4>
+              <div class="list-group-item-text">
+                <p>{{campaign.start | date: 'MM/dd/yyyy'}} - {{campaign.end | date: 'MM/dd/yyyy'}}</p>
+              </div>
+
+            </a><!-- End Campaign List Group Item-->
+          </div>
+        </div><!-- End Campaigns List Group: Used to select Campaign -->
+        <!-- Start Campaign Main Content -->
+        <div class="col-sm-8 col-tactics">
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane campaign-content active" id="{{campaign.id}}" ng-repeat="tactic in tactics | orderBy: 'id'">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <p class="panel-title">{{tactic.title}}</p>
+                    </div>
+                    <div class="col-sm-2">
+                      <p class="no-space-after"><span class="label label-primary">{{tactic.channel}}</span></p>
+                    </div>
+                    <div class="col-sm-5">
+                      <p class="no-space-after"><small>{{tactic.start | date: 'MMM dd, yyyy'}} - {{tactic.end | date: 'MMM dd, yyyy'}}</small></p>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-sm-2">
+                      <img src="http://placehold.it/50x50">
+                    </div>
+                    <div class="col-sm-10">
+                      <div class="row" ng-if="tactic.channel == 'Email'">
+                        <div class="col-sm-3 text-center">
+                          <p class="bh-metric bh-metric-sent">{{tactic.sends ? tactic.sends : "---"}}
+                            <span class="bh-metric-label">Sent</span></p>
+                        </div>
+                        <div class="col-sm-3 text-center">
+                          <p class="bh-metric bh-metric-open">{{tactic.opens ? tactic.opens : "---"}}
+                            <span class="bh-metric-label">Open</span></p>
+                        </div>
+                        <div class="col-sm-3 text-center">
+                          <p class="bh-metric bh-metric-clicks">{{tactic.clicks ? tactic.clicks : "---"}}
+                            <span class="bh-metric-label">Clicked</span></p>
+                        </div>
+                      </div>
+                      <div class="row" ng-if="tactic.channel == 'Direct Mail'">
+                        <div class="col-sm-3 text-center">
+                            <p class="bh-metric bh-metric-clicks">0
+                              <span class="bh-metric-label">Clicks</span></p>
+                        </div>
+                        <div class="col-sm-3 text-center">
+                            <p class="bh-metric bh-metric-impressions">0
+                              <span class="bh-metric-label">Impressions</span></p>
+                        </div>
+                        <div class="col-sm-3 text-center">
+                            <p class="bh-metric bh-metric-ctr">0.00%
+                              <span class="bh-metric-label">CTR</span></p>
+                        </div>
+                        <div class="col-sm-3 text-center">
+                            <p class="bh-metric bh-metric-cost">$0.00
+                              <span class="bh-metric-label">Cost</span></p>
+                        </div>
+                      </div>
+                      <div class="row" ng-if="tactic.channel == 'Display'">
+                        <div class="col-sm-3 text-center">
+                            <p class="bh-metric bh-metric-clicks">0
+                              <span class="bh-metric-label">Clicks</span></p>
+                        </div>
+                        <div class="col-sm-3 text-center">
+                            <p class="bh-metric bh-metrics-impressions">0
+                              <span class="bh-metric-label">Impressions</span></p>
+                        </div>
+                        <div class="col-sm-3 text-center">
+                            <p class="bh-metric bh-metric-ctr">0.00%
+                              <span class="bh-metric-label">CTR</span></p>
+                        </div>
+                        <div class="col-sm-3 text-center">
+                            <p class="bh-metric bh-metric-cost">$0.00
+                              <span class="bh-metric-label">Cost</span></p>
+                        </div>
+                      </div>
+                      <div class="row" ng-if="tactic.channel == 'Paid Search'">
+                        <div class="col-sm-3 text-center">
+                            <p class="bh-metric bh-metric-clicks">0
+                              <span class="bh-metric-label">Clicks</span></p>
+                        </div>
+                        <div class="col-sm-3 text-center">
+                            <p class="bh-metric bh-metric-impressions">0
+                              <span class="bh-metric-label">Impressions</span></p>
+                        </div>
+                        <div class="col-sm-3 text-center">
+                            <p class="bh-metric bh-metric-ctr">0.00%
+                              <span class="bh-metric-label">CTR</span></p>
+                        </div>
+                        <div class="col-sm-3 text-center">
+                            <p class="bh-metric bh-metric-cost">$0.00
+                              <span class="bh-metric-label">Cost</span></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <hr>
+                      <p>{{tactic.description}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!-- End Campaign Main Content -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

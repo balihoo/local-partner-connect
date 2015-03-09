@@ -1,0 +1,96 @@
+// Basic HTML Element Restyles
+.table {
+  thead {
+    tr {
+      background-color: $bhoo-light-gray;
+      th {
+        border-bottom: 2px solid darken($bhoo-light-gray, 5%);
+      }
+    }
+  }
+}
+
+hr {
+  margin: 10px 0;
+}
+
+///////////////////////////
+// Balihoo Platform Modules
+///////////////////////////
+
+// Metric Modules
+.bh-metric {
+  text-align: left;
+  font-size: 28px;
+  color: #111;
+  line-height: 0.8;
+  text-indent: 5px;
+  margin-top: 5px;
+  margin-bottom: 0;
+
+  .bh-metric-label {
+    font-size: 12px;
+    color: #888;
+    text-transform: uppercase;
+    display: block;
+    margin-top: 4px;
+    margin-left: 28px;
+  }
+  &:before {
+    content: '';
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    float: left;
+    display: block;
+    box-sizing: border-box;
+    height: 28px;
+    width: 28px;
+    padding: 5px 0;
+    text-align: center;
+    text-indent: 0;
+    font-size: 18px;
+    margin-top: -5px;
+    color: #fff;
+    background-color: #999;
+    border-radius: 4px;
+  }
+  &.bh-metric-cost {
+    &:before {
+      content: '\e148';
+      background-color: $brand-danger;
+    }
+  }
+  &.bh-metric-impressions {
+    &:before {
+      content: '\e105';
+      background-color: $brand-primary;
+    }
+  }
+  &.bh-metric-clicks {
+    &:before {
+      content: '\e129';
+      background-color: $brand-success;
+    }
+  }
+  &.bh-metric-open {
+    &:before {
+      content: '\e105';
+      background-color: $brand-info;
+    }
+  }
+  &.bh-metric-sent {
+    &:before {
+      content: '\e171';
+      background-color: $brand-warning;
+    }
+  }
+}
+
+// Utilities
+.no-space-after {
+  margin-bottom: 0 !important;
+}

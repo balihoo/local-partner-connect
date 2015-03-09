@@ -1,4 +1,4 @@
-Location Plugin
+Balihoo Location Plugin
 ---------------
 
-This is the Master branch.
+This is a demo of the Balihoo Location Plugin.
