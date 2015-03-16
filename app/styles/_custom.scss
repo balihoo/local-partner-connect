@@ -21,7 +21,7 @@ hr {
 // Metric Modules
 .bh-metric {
   text-align: left;
-  font-size: 28px;
+  font-size: 20px;
   color: #111;
   line-height: 0.8;
   text-indent: 5px;
@@ -74,6 +74,12 @@ hr {
     &:before {
       content: '\e129';
       background-color: $brand-success;
+    }
+  }
+  &.bh-metric-ctr {
+    &:before {
+      content: '\e095';
+      background-color: $brand-info;
     }
   }
   &.bh-metric-open {
