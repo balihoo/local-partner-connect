@@ -1,3 +1,19 @@
 <div class="container pull-left">
-    <p>Local website metrics will go here.</p>
+    <div class="col-localwebsite">
+        <h3>Visits</h3>
+        <p>Total: {{websiteMetrics.visits.total}}</p>
+        <p>Organic: {{websiteMetrics.visits.organic}}</p>
+        <p>Direct: {{websiteMetrics.visits.direct}}</p>
+        <p>Referral: {{websiteMetrics.visits.referral}}</p>
+        <br>
+        <h3>Leads</h3>
+        <p>Total: {{websiteMetrics.leads.total}}</p>
+        <p>Web: {{websiteMetrics.leads.web}}</p>
+        <p>Phone: {{websiteMetrics.leads.phone}}</p>
+    </div>    
 </div>
+
+<modal id="localWebsiteModal" title="Local Website Metrics Error" type="alert alert-danger" visible="showLocalWebsiteModal">
+    <p>No local websie metrics data was found for this location. Please make sure you have entered a correct 'Location ID' at login.</p>
+    <p>For further assistance please contact Balihoo support: <a href="mailto:support@balihoo.com">support@balihoo.com</a></p>
+</modal>

@@ -2,17 +2,43 @@
 
 /**
  * @ngdoc function
- * @name locationPluginApp.controller:LocalWebsiteCtrl
+ * @name locationPluginApp.controller:LocalWebsiteController
  * @description
- * # LocalWebsiteCtrl
+ * # LocalWebsiteController
  * Controller of the locationPluginApp
  */
 angular.module('locationPluginApp')
-  .controller('LocalWebsiteCtrl', ['$scope', '$q', function ($scope, $q) {
+  .controller('LocalWebsiteController', function ($scope, $rootScope, $q, $window, $timeout, AUTH_EVENTS, AuthService) {
 
-    //$q.when(connection.getWebsiteMetrics())
-    //  .then(function (websiteMetrics) {
-    //    console.log(websiteMetrics);
-    //  });
+    if (AuthService.isAuthenticated()) {
+      getLocalWebsiteData();
+    } else {
+      $scope.toggleLoginModal();
+      $('#loginForm').submit(function() {
+        $timeout(function() {
+          if (AuthService.isAuthenticated())
+            getLocalWebsiteData();
+        }, 500);
+      });
+    }
 
-  }]);
+    function getLocalWebsiteData() {
+      $q.when($scope.connection.getWebsiteMetrics())
+        .then(function (websiteMetrics) {
+          if (!websiteMetrics) {
+            $scope.toggleLocalWebsiteModal();
+            $('#localWebsiteModal').on('hidden.bs.modal', function (){
+              $window.location.reload();
+            });
+            throw new Error("No local website data was found");
+          }
+          return $scope.websiteMetrics = websiteMetrics;
+        })
+        .catch(function(response) {
+          if (response.status == 404) {
+            $window.location.reload();
+          }
+        });
+    }
+
+  });
