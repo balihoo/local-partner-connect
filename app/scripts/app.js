@@ -19,7 +19,7 @@ angular
     'ngSanitize',
     'ngTouch'
   ])
-  .config(function ($routeProvider, $httpProvider) {
+  .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/campaigns.html',
@@ -32,18 +32,9 @@ angular
       .otherwise({
         redirectTo: '/'
       });
-
-    //$httpProvider.interceptors.push([
-    //  '$injector',
-    //  function ($injector) {
-    //    return $injector.get('AuthInterceptor');
-    //  }
-    //]);
-    //$httpProvider.interceptors.push('AuthInterceptor');
-
   })
-  .controller('ApplicationController', function($scope, $rootScope, $http, $location, USER_ROLES, Session, AuthService) {
-    $scope.debug = true;
+  .controller('ApplicationController', function($scope, $rootScope, $http, $location, Session, AuthService) {
+    $scope.debug = false;
 
     $scope.menu = [
       {label: 'Campaigns', route: '/'},
@@ -57,7 +48,6 @@ angular
     });
 
     $scope.currentUser = null;
-    $scope.userRoles = USER_ROLES;
     $scope.isAuthorized = AuthService.isAuthorized;
 
     $scope.setCurrentUser = function (user) {
@@ -89,8 +79,6 @@ angular
 
       //For testing expired API key
       //this.connection = new balihoo.LocalConnection('d9d36d9c-94ce-4263-83e5-fdcc34fe81b4', '5c7cd03c-34ba-4374-a451-06a9d39b731a');
-
-      //this.userRole = userRole;
     };
     this.destroy = function () {
       this.clientId = null;
@@ -101,19 +89,16 @@ angular
   .factory('AuthService', function ($http, Session) {
     var authService = {};
 
-    //var apiKey = '81636bdb-d1ef-4364-8b57-bf7683ded94b';
-    //var brandKey = 'dental';
-    //var locationId = '27';
-    //var userId = 'user';
-    //var groupId = 'group';
-
     authService.login = function (credentials) {
       var url = 'http://localhost:8888/location-plugin/app/scripts/libraries/clientAuth.php';
 
       //API parameters - Move to a config file?
       credentials = {
-        apiKey: '81636bdb-d1ef-4364-8b57-bf7683ded94b',
-        brandKey: 'dental',
+        //DEV
+        //apiKey: '81636bdb-d1ef-4364-8b57-bf7683ded94b',
+        //brandKey: 'dental',
+        apiKey: '05b576d2-e895-4846-9951-4a8206a74347',
+        brandKey: 'aamco',
         locationId: credentials.locationId,
         userId: credentials.userId,
         groupId: credentials.groupId
@@ -147,36 +132,6 @@ angular
 
     return authService;
   })
-  //.factory('AuthInterceptor', function ($rootScope, $q, AUTH_EVENTS) {
-  //
-  //  return {
-  //    response: function (response) {
-  //      if (response.status === 404) {
-  //        console.log('AuthInterceptor used!!!');
-  //        console.log('Response: ' + response.status);
-  //        return $q.reject(response);
-  //      }
-  //      console.log('AuthInterceptor used!!!');
-  //      console.log('Response: ' + response.status);
-  //      //$rootScope.$broadcast({
-  //      //  401: AUTH_EVENTS.notAuthenticated,
-  //      //  403: AUTH_EVENTS.notAuthorized
-  //      //}[response.status], response);
-  //      return response;
-  //    },
-  //
-  //    responseError: function (response) {
-  //      console.log('AuthInterceptor used!!!');
-  //      console.log('Response: ' + response.status);
-  //      $rootScope.$broadcast({
-  //        401: AUTH_EVENTS.notAuthenticated,
-  //        403: AUTH_EVENTS.notAuthorized
-  //      }[response.status], response);
-  //      return $q.reject(response);
-  //    }
-  //  };
-  //
-  //})
   .directive('modal', function () {
     return {
       restrict: 'E',
@@ -184,7 +139,6 @@ angular
       '<div class="modal-dialog">' +
       '<div class="modal-content">' +
       '<div class="modal-header {{ type }}">' +
-        //'<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' +
       '<h4 class="modal-title">{{ title }}</h4>' +
       '</div>' +
       '<div class="modal-body" ng-transclude></div>' +
@@ -197,14 +151,15 @@ angular
       link: function (scope, element, attrs) {
 
         scope.type = attrs.type;
-        scope.closeButton = attrs.closeButton;
         scope.title = attrs.title;
 
         scope.$watch(attrs.visible, function(value){
-          if(value == true)
+          if(value === true) {
             $(element).modal('show');
-          else
+          }
+          else {
             $(element).modal('hide');
+          }
         });
 
         $(element).on('shown.bs.modal', function(){
@@ -218,20 +173,6 @@ angular
             scope.$parent[attrs.visible] = false;
           });
         });
-
-        //var showDialog = function () {
-        //  scope.visible = true;
-        //  $('#loginModal').modal('show');
-        //};
-        //
-        //var hideDialog = function () {
-        //  scope.visible = false;
-        //};
-        //
-        //scope.visible = false;
-        //scope.$on(AUTH_EVENTS.notAuthenticated, showDialog);
-        //scope.$on(AUTH_EVENTS.sessionTimeout, showDialog);
-        //scope.$on(AUTH_EVENTS.loginSuccess, hideDialog);
       }
     };
   })
@@ -242,10 +183,4 @@ angular
     sessionTimeout: 'auth-session-timeout',
     notAuthenticated: 'auth-not-authenticated',
     notAuthorized: 'auth-not-authorized'
-  })
-  .constant('USER_ROLES', {
-    all: '*',
-    admin: 'admin',
-    editor: 'editor',
-    guest: 'guest'
   });
