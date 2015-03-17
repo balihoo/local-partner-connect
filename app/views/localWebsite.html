@@ -1,17 +1,135 @@
 <div class="container pull-left">
     <div class="col-localwebsite">
-        <h3>Visits</h3>
-        <p>Total: {{websiteMetrics.visits.total}}</p>
-        <p>Organic: {{websiteMetrics.visits.organic}}</p>
-        <p>Direct: {{websiteMetrics.visits.direct}}</p>
-        <p>Referral: {{websiteMetrics.visits.referral}}</p>
-        <br>
-        <h3>Leads</h3>
-        <p>Total: {{websiteMetrics.leads.total}}</p>
-        <p>Web: {{websiteMetrics.leads.web}}</p>
-        <p>Phone: {{websiteMetrics.leads.phone}}</p>
-    </div>    
+
+      <div class="row">
+        <!-- Visits -->
+        <div class="col-md-6 col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading"><h3>Visits</h3></div>
+            <div class="panel-body">
+              <div id="visits-chart" class="ls-chart"></div>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Metric</th>
+                    <th>Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Organic</td>
+                    <td>{{websiteMetrics.visits.organic}}</td>
+                  </tr>
+                  <tr>
+                    <td>Direct</td>
+                    <td>{{websiteMetrics.visits.direct}}</td>
+                  </tr>
+                  <tr>
+                    <td>Referral</td>
+                    <td>{{websiteMetrics.visits.referral}}</td>
+                  </tr>
+                  <tr>
+                    <td>Total</td>
+                    <td>{{websiteMetrics.visits.total}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <!-- Leads -->
+        <div class="col-md-6 col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading"><h3>Leads</h3></div>
+            <div class="panel-body">
+              <div id="leads-chart" class="ls-chart"></div>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Metric</th>
+                    <th>Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Web</td>
+                    <td>{{websiteMetrics.leads.web}}</td>
+                  </tr>
+                  <tr>
+                    <td>Phone</td>
+                    <td>{{websiteMetrics.leads.phone}}</td>
+                  </tr>
+                  <tr>
+                    <td>Total</td>
+                    <td>{{websiteMetrics.leads.total}}</td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
 </div>
+
+<script type="text/javascript">
+
+  // Visits Chart
+  var chart = c3.generate({
+    bindto: '#visits-chart',
+    size: {
+      width: 250
+    },
+    data: {
+      columns: [
+        ['Organic', 30, 200, 100, 400, 150, 250],
+        ['Direct', 50, 20, 10, 40, 15, 25],
+        ['Referral', 50, 20, 10, 40, 15, 25]
+      ],
+      colors: {
+        Organic: '#78a09e',
+        Direct: '#efc75e',
+        Referral: '#e2574c'
+      },
+      type : 'donut'
+    },
+    donut: {
+      title: "Visits"
+    }
+  });
+
+  // Leads Chart
+  var chart = c3.generate({
+    bindto: '#leads-chart',
+    size: {
+      width: 250
+    },
+    data: {
+      columns: [
+        ['Web', 30, 200, 100, 400, 150, 250],
+        ['Phone', 50, 20, 10, 40, 15, 25]
+      ],
+      colors: {
+        Web: '#78a09e',
+        Phone: '#efc75e'
+      },
+      type : 'donut'
+    },
+    donut: {
+      title: "Leads"
+    }
+  });
+
+</script>
 
 <modal id="localWebsiteModal" title="Local Website Metrics Error" type="alert alert-danger" visible="showLocalWebsiteModal">
     <p>No local websie metrics data was found for this location. Please make sure you have entered a correct 'Location ID' at login.</p>
