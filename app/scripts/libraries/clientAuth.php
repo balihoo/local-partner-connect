@@ -11,7 +11,7 @@ ini_set('display_errors', 1);
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Headers: X-Requested-With');
 
-$url = 'http://bac.dev.balihoo-cloud.com/localdata/v1.0/genClientAPIKey';
+$url = 'http://bac.balihoo-cloud.com/localdata/v1.0/genClientAPIKey';
 
 $ch = curl_init();
 
