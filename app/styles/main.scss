@@ -17,6 +17,15 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
  *
  *******************/
 
+.col-localwebsite {
+  padding-top: 80px;
+}
+
+.ls-chart {
+  width: 250px;
+  margin: 0 auto;
+}
+
 /* Small devices (tablets, 768px and up) */
 @media (min-width: $screen-sm-min) {
   .h100 {
@@ -29,10 +38,6 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: none;
-  }
-
-  .col-localwebsite {
-    padding-top: 80px;
   }
 
   .col-login input {
