@@ -83,6 +83,12 @@
 
 <script type="text/javascript">
 
+  var organicVisits = parseInt('{{websiteMetrics.visits.organic}}', 10),
+  directVisits = parseInt('{{websiteMetrics.visits.direct}}', 10),
+  referralVisits = parseInt('{{websiteMetrics.visits.referral}}', 10),
+  webLeads = parseInt('{{websiteMetrics.leads.web}}', 10),
+  phoneLeads = parseInt('{{websiteMetrics.leads.phone}}', 10);
+
   // Visits Chart
   var chart = c3.generate({
     bindto: '#visits-chart',
@@ -91,9 +97,9 @@
     },
     data: {
       columns: [
-        ['Organic', 30, 200, 100, 400, 150, 250],
-        ['Direct', 50, 20, 10, 40, 15, 25],
-        ['Referral', 50, 20, 10, 40, 15, 25]
+        ['Organic', organicVisits],
+        ['Direct', directVisits],
+        ['Referral', referralVisits]
       ],
       colors: {
         Organic: '#78a09e',
@@ -115,8 +121,8 @@
     },
     data: {
       columns: [
-        ['Web', 30, 200, 100, 400, 150, 250],
-        ['Phone', 50, 20, 10, 40, 15, 25]
+        ['Web', webLeads],
+        ['Phone', phoneLeads]
       ],
       colors: {
         Web: '#78a09e',
