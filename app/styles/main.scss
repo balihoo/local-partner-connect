@@ -26,6 +26,11 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
   margin: 0 auto;
 }
 
+// Chart Styles
+.c3-tooltip {
+  width: 150px;
+}
+
 /* Small devices (tablets, 768px and up) */
 @media (min-width: $screen-sm-min) {
   .h100 {

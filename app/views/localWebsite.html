@@ -3,14 +3,20 @@
 
       <div class="row">
         <!-- Visits -->
-        <div class="col-md-6 col-sm-12">
+        <div class="col-sm-6 col-xs-12">
           <div class="panel panel-default">
-            <div class="panel-heading"><h3>Visits</h3></div>
+            <div class="panel-heading clearfix">
+              <h4 class="pull-left">Visits</h4>
+              <div id="visits-toggle" class="btn-group pull-right" role="group" aria-label="...">
+                <button id="visits-pie" type="button" class="btn btn-default active">Donut Chart</button>
+                <button id="visits-bar" type="button" class="btn btn-default">Bar Graph</button>
+              </div>
+            </div>
             <div class="panel-body">
               <div id="visits-chart" class="ls-chart"></div>
             </div>
             <div class="table-responsive">
-              <table class="table table-hover">
+              <table class="table table-hover table-condensed">
                 <thead>
                   <tr>
                     <th>Metric</th>
@@ -19,15 +25,15 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td>Organic</td>
+                    <td class="text-success">Organic</td>
                     <td>{{websiteMetrics.visits.organic}}</td>
                   </tr>
                   <tr>
-                    <td>Direct</td>
+                    <td class="text-warning">Direct</td>
                     <td>{{websiteMetrics.visits.direct}}</td>
                   </tr>
                   <tr>
-                    <td>Referral</td>
+                    <td class="text-danger">Referral</td>
                     <td>{{websiteMetrics.visits.referral}}</td>
                   </tr>
                   <tr>
@@ -40,14 +46,20 @@
           </div>
         </div>
         <!-- Leads -->
-        <div class="col-md-6 col-sm-12">
+        <div class="col-sm-6 col-xs-12">
           <div class="panel panel-default">
-            <div class="panel-heading"><h3>Leads</h3></div>
+            <div class="panel-heading clearfix">
+              <h4 class="pull-left">Leads</h4>
+              <div id="leads-toggle" class="btn-group pull-right" role="group" aria-label="...">
+                <button id="leads-pie" type="button" class="btn btn-default active">Donut Chart</button>
+                <button id="leads-bar" type="button" class="btn btn-default">Bar Graph</button>
+              </div>
+            </div>
             <div class="panel-body">
               <div id="leads-chart" class="ls-chart"></div>
             </div>
             <div class="table-responsive">
-              <table class="table table-hover">
+              <table class="table table-hover table-condensed">
                 <thead>
                   <tr>
                     <th>Metric</th>
@@ -56,11 +68,11 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td>Web</td>
+                    <td class="text-success">Web</td>
                     <td>{{websiteMetrics.leads.web}}</td>
                   </tr>
                   <tr>
-                    <td>Phone</td>
+                    <td class="text-warning">Phone</td>
                     <td>{{websiteMetrics.leads.phone}}</td>
                   </tr>
                   <tr>
@@ -83,14 +95,20 @@
 
 <script type="text/javascript">
 
-  var organicVisits = parseInt('{{websiteMetrics.visits.organic}}', 10),
-  directVisits = parseInt('{{websiteMetrics.visits.direct}}', 10),
-  referralVisits = parseInt('{{websiteMetrics.visits.referral}}', 10),
-  webLeads = parseInt('{{websiteMetrics.leads.web}}', 10),
-  phoneLeads = parseInt('{{websiteMetrics.leads.phone}}', 10);
+  // var organicVisits = parseInt('{{websiteMetrics.visits.organic}}', 10),
+  // directVisits = parseInt('{{websiteMetrics.visits.direct}}', 10),
+  // referralVisits = parseInt('{{websiteMetrics.visits.referral}}', 10),
+  // webLeads = parseInt('{{websiteMetrics.leads.web}}', 10),
+  // phoneLeads = parseInt('{{websiteMetrics.leads.phone}}', 10);
+
+  var organicVisits = 11,
+  directVisits = 4,
+  referralVisits = 29,
+  webLeads = 1,
+  phoneLeads = 19;
 
   // Visits Chart
-  var chart = c3.generate({
+  var visitsChart = c3.generate({
     bindto: '#visits-chart',
     size: {
       width: 250
@@ -108,13 +126,38 @@
       },
       type : 'donut'
     },
+    axis: {
+      x: {
+        type: 'category',
+        categories: ['Visits'],
+        show: false
+      }
+    },
     donut: {
       title: "Visits"
     }
   });
 
+  $('#visits-pie').click(function(e) {
+    e.preventDefault();
+    if (!$(this).hasClass('active')) {
+      visitsChart.transform('donut');
+      $('#visits-toggle button').removeClass('active');
+      $(this).addClass('active');
+    }
+  });
+
+  $('#visits-bar').click(function(e) {
+    e.preventDefault();
+    if (!$(this).hasClass('active')) {
+      visitsChart.transform('bar');
+      $('#visits-toggle button').removeClass('active');
+      $(this).addClass('active');
+    }
+  });
+
   // Leads Chart
-  var chart = c3.generate({
+  var leadsChart = c3.generate({
     bindto: '#leads-chart',
     size: {
       width: 250
@@ -130,8 +173,33 @@
       },
       type : 'donut'
     },
+    axis: {
+      x: {
+        type: 'category',
+        categories: ['Leads'],
+        show: false
+      }
+    },
     donut: {
       title: "Leads"
+    }
+  });
+
+  $('#leads-pie').click(function(e) {
+    e.preventDefault();
+    if (!$(this).hasClass('active')) {
+      leadsChart.transform('donut');
+      $('#leads-toggle button').removeClass('active');
+      $(this).addClass('active');
+    }
+  });
+
+  $('#leads-bar').click(function(e) {
+    e.preventDefault();
+    if (!$(this).hasClass('active')) {
+      leadsChart.transform('bar');
+      $('#leads-toggle button').removeClass('active');
+      $(this).addClass('active');
     }
   });
 
