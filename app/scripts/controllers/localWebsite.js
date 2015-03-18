@@ -18,7 +18,7 @@ angular.module('locationPluginApp')
         $timeout(function() {
           if (AuthService.isAuthenticated())
             getLocalWebsiteData();
-        }, 500);
+        }, 1000);
       });
     }
 
@@ -32,6 +32,19 @@ angular.module('locationPluginApp')
             });
             throw new Error("No local website data was found");
           }
+          visitsChart.load({
+            columns: [
+              ['Organic', websiteMetrics.visits.organic],
+              ['Direct', websiteMetrics.visits.direct],
+              ['Referral', websiteMetrics.visits.referral]
+            ]
+          });
+          leadsChart.load({
+            columns: [
+              ['Web', websiteMetrics.leads.web],
+              ['Phone', websiteMetrics.leads.phone]
+            ]
+          });
           return $scope.websiteMetrics = websiteMetrics;
         })
         .catch(function(response) {
