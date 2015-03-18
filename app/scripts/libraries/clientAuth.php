@@ -1,13 +1,4 @@
 <?php
-/**
- * Balihoo Location Plugin Test
- * Created by jlutz on 1/21/15.
- */
-
-error_reporting(~0);
-ini_set('display_errors', 1);
-
-//CORS
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Headers: X-Requested-With');
 

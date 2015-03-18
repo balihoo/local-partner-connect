@@ -60,57 +60,23 @@
                             <span class="bh-metric-label">Clicked</span></p>
                         </div>
                       </div>
-                      <div class="row" ng-if="tactic.channel == 'Direct Mail'">
-                        <div class="col-sm-3 text-center">
-                            <p class="bh-metric bh-metric-clicks">0
-                              <span class="bh-metric-label">Clicks</span></p>
-                        </div>
-                        <div class="col-sm-3 text-center">
-                            <p class="bh-metric bh-metric-impressions">0
-                              <span class="bh-metric-label">Impressions</span></p>
-                        </div>
-                        <div class="col-sm-3 text-center">
-                            <p class="bh-metric bh-metric-ctr">0.00%
-                              <span class="bh-metric-label">CTR</span></p>
-                        </div>
-                        <div class="col-sm-3 text-center">
-                            <p class="bh-metric bh-metric-cost">$0.00
-                              <span class="bh-metric-label">Cost</span></p>
-                        </div>
-                      </div>
                       <div class="row" ng-if="tactic.channel == 'Display'">
                         <div class="col-sm-3 text-center">
-                            <p class="bh-metric bh-metric-clicks">0
-                              <span class="bh-metric-label">Clicks</span></p>
-                        </div>
-                        <div class="col-sm-3 text-center">
-                            <p class="bh-metric bh-metric-impressions">0
+                            <p class="bh-metric bh-metric-impressions">{{tactic.impressions ? tactic.impressions : "---"}}
                               <span class="bh-metric-label">Impressions</span></p>
                         </div>
                         <div class="col-sm-3 text-center">
-                            <p class="bh-metric bh-metric-ctr">0.00%
-                              <span class="bh-metric-label">CTR</span></p>
-                        </div>
-                        <div class="col-sm-3 text-center">
-                            <p class="bh-metric bh-metric-cost">$0.00
+                            <p class="bh-metric bh-metric-cost">${{tactic.spend ? tactic.spend : "---"}}
                               <span class="bh-metric-label">Cost</span></p>
                         </div>
                       </div>
                       <div class="row" ng-if="tactic.channel == 'Paid Search'">
                         <div class="col-sm-3 text-center">
-                            <p class="bh-metric bh-metric-clicks">0
+                            <p class="bh-metric bh-metric-clicks">{{tactic.clicks ? tactic.clicks : "---"}}
                               <span class="bh-metric-label">Clicks</span></p>
                         </div>
                         <div class="col-sm-3 text-center">
-                            <p class="bh-metric bh-metric-impressions">0
-                              <span class="bh-metric-label">Impressions</span></p>
-                        </div>
-                        <div class="col-sm-3 text-center">
-                            <p class="bh-metric bh-metric-ctr">0.00%
-                              <span class="bh-metric-label">CTR</span></p>
-                        </div>
-                        <div class="col-sm-3 text-center">
-                            <p class="bh-metric bh-metric-cost">$0.00
+                            <p class="bh-metric bh-metric-cost">${{tactic.spend ? tactic.spend : "---"}}
                               <span class="bh-metric-label">Cost</span></p>
                         </div>
                       </div>
