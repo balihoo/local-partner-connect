@@ -29,7 +29,7 @@
       </div>
       <div class="collapse navbar-collapse" id="primary-navigation">
         <ul class="nav navbar-nav">
-          <li ng-repeat="item in menu" ng-class="{active: item.route == menuActive}"><a ng-href="#{{item.route}}">{{item.label}}</a></li>
+          <li ng-repeat="item in menu" ng-class="{active: item.route == menuActive}"><a class="animate-repeat-campaigns" ng-href="#{{item.route}}">{{item.label}}</a></li>
         </ul>
       <div class= "pull-right" ng-if="debug && currentUser">ClientID: {{currentUser.clientId}}</div><br>
       <div class= "pull-right" ng-if="debug && currentUser">ClientApiKey: {{currentUser.clientApiKey}}</div>

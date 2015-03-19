@@ -17,6 +17,60 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
  *
  *******************/
 
+.animate-repeat-campaigns {
+  //list-style:none;
+  -webkit-transition: 0.4s ease-in-out all;
+  transition: 0.4s ease-in-out all;
+}
+
+.animate-repeat-campaigns.ng-move,
+.animate-repeat-campaigns.ng-enter,
+.animate-repeat-campaigns.ng-leave {
+  -webkit-transition:all ease-in-out 0.4s;
+  transition:all ease-in-out 0.4s;
+}
+
+.animate-repeat-campaigns.ng-leave.ng-leave-active,
+.animate-repeat-campaigns.ng-move,
+.animate-repeat-campaigns.ng-enter {
+  opacity:0;
+  max-height:0;
+}
+
+.animate-repeat-campaigns.ng-leave,
+.animate-repeat-campaigns.ng-move.ng-move-active,
+.animate-repeat-campaigns.ng-enter.ng-enter-active {
+  opacity:0;
+  max-height: 0;
+}
+
+.animate-repeat-tactics {
+  //list-style:none;
+  -webkit-transition: 0.7s ease-in-out all;
+  transition: 0.7s ease-in-out all;
+}
+
+.animate-repeat-tactics.ng-move,
+.animate-repeat-tactics.ng-enter,
+.animate-repeat-tactics.ng-leave {
+  -webkit-transition:all ease-in-out 0.7s;
+  transition:all ease-in-out 0.7s;
+}
+
+.animate-repeat-tactics.ng-leave.ng-leave-active,
+.animate-repeat-tactics.ng-move,
+.animate-repeat-tactics.ng-enter {
+  opacity:0;
+  max-height:0;
+}
+
+.animate-repeat-tactics.ng-leave,
+.animate-repeat-tactics.ng-move.ng-move-active,
+.animate-repeat-tactics.ng-enter.ng-enter-active {
+  opacity:0;
+  max-height: 0;
+}
+
 .col-localwebsite {
   padding-top: 80px;
 }

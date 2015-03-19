@@ -12,7 +12,7 @@
         <div class="col-sm-4 col-campaigns">
           <div class="list-group">
             <!-- Campaign List Group Item -->
-            <a class="campaign-nav list-group-item" ng-repeat="campaign in campaigns | orderBy: 'id'" ng-click="loadTactics(campaign.id); $parent.selected = campaign" ng-class="{active: selected == campaign}">
+            <a class="campaign-nav list-group-item animate-repeat-campaigns" ng-repeat="campaign in campaigns | orderBy: 'id'" ng-click="loadTactics(campaign.id); $parent.selected = campaign" ng-class="{active: selected == campaign}">
 
               <h4 class="list-group-item-heading">{{campaign.title}}</h4>
               <div class="list-group-item-text">
@@ -25,7 +25,7 @@
         <!-- Start Campaign Main Content -->
         <div class="col-sm-8 col-tactics">
           <div class="tab-content">
-            <div role="tabpanel" class="tab-pane campaign-content active" id="{{campaign.id}}" ng-repeat="tactic in tactics | orderBy: 'id'">
+            <div role="tabpanel" class="tab-pane campaign-content active animate-repeat-tactics" id="{{campaign.id}}" ng-repeat="tactic in tactics | orderBy: 'id'">
               <div class="panel panel-default">
                 <div class="panel-heading">
                   <div class="row">
@@ -45,75 +45,41 @@
                     <div class="col-sm-2">
                       <img src="http://placehold.it/50x50">
                     </div>
-                    <div class="col-sm-10">
-                      <div class="row" ng-if="tactic.channel == 'Email'">
-                        <div class="col-sm-3 text-center">
-                          <p class="bh-metric bh-metric-sent">{{tactic.sends ? tactic.sends : "---"}}
-                            <span class="bh-metric-label">Sent</span></p>
+                    <div class="col-sm-10" ng-switch on="tactic.channel">
+                        <div class="row" ng-switch-when="Email">
+                            <div class="col-sm-3 text-center">
+                                <p class="bh-metric bh-metric-sent">{{tactic.sends ? tactic.sends : "---"}}
+                                    <span class="bh-metric-label">Sent</span></p>
+                            </div>
+                            <div class="col-sm-3 text-center">
+                                <p class="bh-metric bh-metric-open">{{tactic.opens ? tactic.opens : "---"}}
+                                    <span class="bh-metric-label">Open</span></p>
+                            </div>
+                            <div class="col-sm-3 text-center">
+                                <p class="bh-metric bh-metric-clicks">{{tactic.clicks ? tactic.clicks : "---"}}
+                                      <span class="bh-metric-label">Clicked</span></p>
+                            </div>
                         </div>
-                        <div class="col-sm-3 text-center">
-                          <p class="bh-metric bh-metric-open">{{tactic.opens ? tactic.opens : "---"}}
-                            <span class="bh-metric-label">Open</span></p>
+                        <div class="row" ng-switch-when="Display">
+                            <div class="col-sm-3 text-center">
+                                <p class="bh-metric bh-metric-impressions">{{tactic.impressions ? tactic.impressions : "---"}}
+                                    <span class="bh-metric-label">Impressions</span></p>
+                            </div>
+                            <div class="col-sm-3 text-center">
+                                <p class="bh-metric bh-metric-cost">${{tactic.spend ? tactic.spend : "---"}}
+                                    <span class="bh-metric-label">Cost</span></p>
+                            </div>
                         </div>
-                        <div class="col-sm-3 text-center">
-                          <p class="bh-metric bh-metric-clicks">{{tactic.clicks ? tactic.clicks : "---"}}
-                            <span class="bh-metric-label">Clicked</span></p>
+                        <div class="row" ng-switch-when="Paid Search">
+                            <div class="col-sm-3 text-center">
+                                <p class="bh-metric bh-metric-clicks">{{tactic.clicks ? tactic.clicks : "---"}}
+                                    <span class="bh-metric-label">Clicks</span></p>
+                            </div>
+                            <div class="col-sm-3 text-center">
+                                <p class="bh-metric bh-metric-cost">${{tactic.spend ? tactic.spend : "---"}}
+                                    <span class="bh-metric-label">Cost</span></p>
+                            </div>
                         </div>
-                      </div>
-                      <div class="row" ng-if="tactic.channel == 'Direct Mail'">
-                        <div class="col-sm-3 text-center">
-                            <p class="bh-metric bh-metric-clicks">0
-                              <span class="bh-metric-label">Clicks</span></p>
-                        </div>
-                        <div class="col-sm-3 text-center">
-                            <p class="bh-metric bh-metric-impressions">0
-                              <span class="bh-metric-label">Impressions</span></p>
-                        </div>
-                        <div class="col-sm-3 text-center">
-                            <p class="bh-metric bh-metric-ctr">0.00%
-                              <span class="bh-metric-label">CTR</span></p>
-                        </div>
-                        <div class="col-sm-3 text-center">
-                            <p class="bh-metric bh-metric-cost">$0.00
-                              <span class="bh-metric-label">Cost</span></p>
-                        </div>
-                      </div>
-                      <div class="row" ng-if="tactic.channel == 'Display'">
-                        <div class="col-sm-3 text-center">
-                            <p class="bh-metric bh-metric-clicks">0
-                              <span class="bh-metric-label">Clicks</span></p>
-                        </div>
-                        <div class="col-sm-3 text-center">
-                            <p class="bh-metric bh-metric-impressions">0
-                              <span class="bh-metric-label">Impressions</span></p>
-                        </div>
-                        <div class="col-sm-3 text-center">
-                            <p class="bh-metric bh-metric-ctr">0.00%
-                              <span class="bh-metric-label">CTR</span></p>
-                        </div>
-                        <div class="col-sm-3 text-center">
-                            <p class="bh-metric bh-metric-cost">$0.00
-                              <span class="bh-metric-label">Cost</span></p>
-                        </div>
-                      </div>
-                      <div class="row" ng-if="tactic.channel == 'Paid Search'">
-                        <div class="col-sm-3 text-center">
-                            <p class="bh-metric bh-metric-clicks">0
-                              <span class="bh-metric-label">Clicks</span></p>
-                        </div>
-                        <div class="col-sm-3 text-center">
-                            <p class="bh-metric bh-metric-impressions">0
-                              <span class="bh-metric-label">Impressions</span></p>
-                        </div>
-                        <div class="col-sm-3 text-center">
-                            <p class="bh-metric bh-metric-ctr">0.00%
-                              <span class="bh-metric-label">CTR</span></p>
-                        </div>
-                        <div class="col-sm-3 text-center">
-                            <p class="bh-metric bh-metric-cost">$0.00
-                              <span class="bh-metric-label">Cost</span></p>
-                        </div>
-                      </div>
                     </div>
                   </div>
                   <div class="row">
@@ -132,8 +98,7 @@
   </div>
 </div>
 
-<modal id="campaignModal" title="Campaign Error" type="alert alert-danger" visible="showCampaignModal">
-    <p>No campaign data was found for this location. Please make sure you have entered a correct 'Location ID' at login.</p>
+<modal id="campaignModal" title="Campaign Error" type="alert alert-danger" data-backdrop="static" visible="showCampaignModal">
+    <p>No campaign data was found for this location. Please make sure you have entered a correct 'Location ID' in the configuration settings and ensure that you have campaign(s).</p>
     <p>For further assistance please contact Balihoo support: <a href="mailto:support@balihoo.com">support@balihoo.com</a></p>
-    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 </modal>

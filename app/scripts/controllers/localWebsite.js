@@ -10,17 +10,10 @@
 angular.module('locationPluginApp')
   .controller('LocalWebsiteController', function ($scope, $rootScope, $q, $window, $timeout, AUTH_EVENTS, AuthService) {
 
-    if (AuthService.isAuthenticated()) {
-      getLocalWebsiteData();
-    } else {
-      $scope.toggleLoginModal();
-      $('#loginForm').submit(function() {
-        $timeout(function() {
-          if (AuthService.isAuthenticated())
-            getLocalWebsiteData();
-        }, 1000);
-      });
-    }
+    $timeout(function() {
+      if (AuthService.isAuthenticated())
+        getLocalWebsiteData();
+    }, 300);
 
     function getLocalWebsiteData() {
       $q.when($scope.connection.getWebsiteMetrics())
