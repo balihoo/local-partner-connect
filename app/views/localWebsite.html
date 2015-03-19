@@ -8,8 +8,8 @@
             <div class="panel-heading clearfix">
               <h4 class="pull-left">Visits</h4>
               <div id="visits-toggle" class="btn-group pull-right" role="group" aria-label="...">
-                <button id="visits-pie" type="button" class="btn btn-default active">Donut Chart</button>
-                <button id="visits-bar" type="button" class="btn btn-default">Bar Graph</button>
+                <button id="visits-pie" type="button" class="btn btn-default active" data-target="visitsChart" data-chart-type="donut" >Donut Chart</button>
+                <button id="visits-bar" type="button" class="btn btn-default" data-target="visitsChart" data-chart-type="bar" >Bar Graph</button>
               </div>
             </div>
             <div class="panel-body">
@@ -51,8 +51,8 @@
             <div class="panel-heading clearfix">
               <h4 class="pull-left">Leads</h4>
               <div id="leads-toggle" class="btn-group pull-right" role="group" aria-label="...">
-                <button id="leads-pie" type="button" class="btn btn-default active">Donut Chart</button>
-                <button id="leads-bar" type="button" class="btn btn-default">Bar Graph</button>
+                <button id="leads-pie" type="button" class="btn btn-default active" data-target="leadsChart" data-chart-type="donut" >Donut Chart</button>
+                <button id="leads-bar" type="button" class="btn btn-default" data-target="leadsChart" data-chart-type="bar" >Bar Graph</button>
               </div>
             </div>
             <div class="panel-body">
@@ -124,21 +124,11 @@
   });
 
   $('#visits-pie').click(function(e) {
-    e.preventDefault();
-    if (!$(this).hasClass('active')) {
-      visitsChart.transform('donut');
-      $('#visits-toggle button').removeClass('active');
-      $(this).addClass('active');
-    }
+    swapChart(e, $(this));
   });
 
   $('#visits-bar').click(function(e) {
-    e.preventDefault();
-    if (!$(this).hasClass('active')) {
-      visitsChart.transform('bar');
-      $('#visits-toggle button').removeClass('active');
-      $(this).addClass('active');
-    }
+    swapChart(e, $(this));
   });
 
   // Leads Chart
@@ -169,22 +159,24 @@
   });
 
   $('#leads-pie').click(function(e) {
-    e.preventDefault();
-    if (!$(this).hasClass('active')) {
-      leadsChart.transform('donut');
-      $('#leads-toggle button').removeClass('active');
-      $(this).addClass('active');
-    }
+    swapChart(e, $(this));
   });
 
   $('#leads-bar').click(function(e) {
-    e.preventDefault();
-    if (!$(this).hasClass('active')) {
-      leadsChart.transform('bar');
-      $('#leads-toggle button').removeClass('active');
-      $(this).addClass('active');
-    }
+    swapChart(e, $(this));
   });
+
+
+  // Exectute c3 transform methed.
+  // Requires a click event and dom object with target data and chartType data.
+  function swapChart(e, b) {
+    e.preventDefault();
+    if (!$(b).hasClass('active')) {
+      window[b.data('target')].transform(b.data('chartType'));
+      $(b.parent().children('button')).removeClass('active');
+      $(b).addClass('active');
+    }
+  }
 
 </script>
 
