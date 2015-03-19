@@ -10,17 +10,10 @@
 angular.module('locationPluginApp')
   .controller('CampaignController', function ($scope, $rootScope, $window, $http, $q, $timeout, AUTH_EVENTS, AuthService) {
 
-    if (AuthService.isAuthenticated()) {
-      getCampaignData();
-    } else {
-      $scope.toggleLoginModal();
-      $('#loginForm').submit(function() {
-        $timeout(function() {
-          if (AuthService.isAuthenticated())
-            getCampaignData();
-        }, 1000);
-      });
-    }
+    $timeout(function() {
+      if (AuthService.isAuthenticated())
+        getCampaignData();
+    }, 300);
 
     function getCampaignData() {
       $q.when($scope.connection.getAllCampaigns())

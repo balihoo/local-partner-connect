@@ -33,8 +33,39 @@ angular
         redirectTo: '/'
       });
   })
-  .controller('ApplicationController', function($scope, $rootScope, $http, $location, Session, AuthService) {
+  .controller('ApplicationController', function($scope, $rootScope, $http, $location, Session, AuthService, AUTH_EVENTS) {
     $scope.debug = false;
+
+    var credentials = {
+      locationId: '475343',
+      userId: 'aamco',
+      groupId: 'aamco'
+    };
+
+    AuthService.login(credentials).then(function (user) {
+      if (user) {
+        $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
+        $scope.setCurrentUser(user);
+        $scope.initConnection();
+        if ($scope.debug) {
+          console.log(AUTH_EVENTS.loginSuccess);
+          console.log('Client ID: ' + user.clientId);
+          console.log('Client API Key: ' + user.clientApiKey);
+          console.log('Authenticated: ' + AuthService.isAuthenticated());
+        }
+      } else {
+        $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
+        $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
+        if ($scope.debug) {
+          console.log(AUTH_EVENTS.loginFailed);
+          console.log('Client ID: null');
+          console.log('Client API Key: null');
+          console.log('Authenticated: ' + AuthService.isAuthenticated());
+        }
+      }
+    }, function () {
+      $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
+    });
 
     $scope.menu = [
       {label: 'Campaigns', route: '/'},
@@ -83,7 +114,6 @@ angular
     this.destroy = function () {
       this.clientId = null;
       this.clientApiKey = null;
-      //this.userRole = null;
     };
   })
   .factory('AuthService', function ($http, Session) {
