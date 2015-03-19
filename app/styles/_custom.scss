@@ -27,8 +27,8 @@ hr {
   text-indent: 5px;
   margin-top: 5px;
   margin-bottom: 0;
-  @media (max-width: $screen-sm-min) {
-    font-size: 16px;
+  @media (max-width: $screen-md-min) {
+    font-size: 14px;
     text-indent: 2px;
   }
 
@@ -39,7 +39,7 @@ hr {
     display: block;
     margin-top: 4px;
     margin-left: 28px;
-    @media (max-width: $screen-sm-min) {
+    @media (max-width: $screen-md-min) {
       margin-left: 20px;
       font-size: 10px;
     }
@@ -65,7 +65,7 @@ hr {
     color: #fff;
     background-color: #999;
     border-radius: 4px;
-    @media (max-width: $screen-sm-min) {
+    @media (max-width: $screen-md-min) {
       margin-top: 0;
       font-size: 12px;
       height: 20px;

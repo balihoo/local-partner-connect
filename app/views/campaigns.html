@@ -42,40 +42,40 @@
                 </div>
                 <div class="panel-body">
                   <div class="row">
-                    <div class="col-sm-2">
+                    <div class="col-sm-2 col-xs-12">
                       <img src="http://placehold.it/50x50">
                     </div>
-                    <div class="col-sm-10" ng-switch on="tactic.channel">
+                    <div class="col-sm-10 col-xs-12" ng-switch on="tactic.channel">
                         <div class="row" ng-switch-when="Email">
-                            <div class="col-sm-3 text-center">
+                            <div class="col-sm-3 col-xs-6 text-center">
                                 <p class="bh-metric bh-metric-sent">{{tactic.sends ? tactic.sends : "---"}}
                                     <span class="bh-metric-label">Sent</span></p>
                             </div>
-                            <div class="col-sm-3 text-center">
+                            <div class="col-sm-3 col-xs-6 text-center">
                                 <p class="bh-metric bh-metric-open">{{tactic.opens ? tactic.opens : "---"}}
                                     <span class="bh-metric-label">Open</span></p>
                             </div>
-                            <div class="col-sm-3 text-center">
+                            <div class="col-sm-3 col-xs-6 text-center">
                                 <p class="bh-metric bh-metric-clicks">{{tactic.clicks ? tactic.clicks : "---"}}
                                       <span class="bh-metric-label">Clicked</span></p>
                             </div>
                         </div>
                         <div class="row" ng-switch-when="Display">
-                            <div class="col-sm-3 text-center">
+                            <div class="col-sm-3 col-xs-6 text-center">
                                 <p class="bh-metric bh-metric-impressions">{{tactic.impressions ? tactic.impressions : "---"}}
                                     <span class="bh-metric-label">Impressions</span></p>
                             </div>
-                            <div class="col-sm-3 text-center">
+                            <div class="col-sm-3 col-xs-6 text-center">
                                 <p class="bh-metric bh-metric-cost">${{tactic.spend ? tactic.spend : "---"}}
                                     <span class="bh-metric-label">Cost</span></p>
                             </div>
                         </div>
                         <div class="row" ng-switch-when="Paid Search">
-                            <div class="col-sm-3 text-center">
+                            <div class="col-sm-3 col-xs-6 text-center">
                                 <p class="bh-metric bh-metric-clicks">{{tactic.clicks ? tactic.clicks : "---"}}
                                     <span class="bh-metric-label">Clicks</span></p>
                             </div>
-                            <div class="col-sm-3 text-center">
+                            <div class="col-sm-3 col-xs-6 text-center">
                                 <p class="bh-metric bh-metric-cost">${{tactic.spend ? tactic.spend : "---"}}
                                     <span class="bh-metric-label">Cost</span></p>
                             </div>
