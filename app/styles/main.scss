@@ -78,6 +78,12 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
   padding-top: 80px;
 }
 
+.campaign-nav {
+  .list-group-item-text {
+    font-size: 12px;
+  }
+}
+
 .ls-chart {
   width: 250px;
   margin: 0 auto;
