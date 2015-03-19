@@ -13,6 +13,8 @@ angular.module('locationPluginApp')
     $timeout(function() {
       if (AuthService.isAuthenticated())
         getCampaignData();
+      else
+        $scope.timeoutModalOn();
     }, 300);
 
     function getCampaignData() {
@@ -44,29 +46,33 @@ angular.module('locationPluginApp')
         })
         .catch(function(response) {
           if (response.status == 404) {
-            $window.location.reload();
+            $scope.timeoutModalOn();
           }
         });
 
       // Click listener for loading tactics
       $scope.loadTactics = function(id) {
-        $q.when($scope.connection.getAllTactics(id))
-          .then(function (allTactics) {
-            return $scope.tactics = allTactics.tactics;
-          })
-          .then(function (tactics) {
-            angular.forEach(tactics, function(tactic, key) {
-              $q.when($scope.connection.getMetricsForTactic(tactic.id))
-                .then(function (metrics) {
-                  angular.extend($scope.tactics[key], metrics);
-                })
+        if (AuthService.isAuthenticated()) {
+          $q.when($scope.connection.getAllTactics(id))
+            .then(function (allTactics) {
+              return $scope.tactics = allTactics.tactics;
             })
-          })
-          .catch(function(response) {
-            if (response.status == 404) {
-              $window.location.reload();
-            }
-          });
+            .then(function (tactics) {
+              angular.forEach(tactics, function (tactic, key) {
+                $q.when($scope.connection.getMetricsForTactic(tactic.id))
+                  .then(function (metrics) {
+                    angular.extend($scope.tactics[key], metrics);
+                  })
+              })
+            })
+            .catch(function (response) {
+              if (response.status == 404) {
+                $scope.timeoutModalOn();
+              }
+            });
+        } else {
+          $scope.timeoutModalOn();
+        }
       };
     }
 

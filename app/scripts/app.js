@@ -34,38 +34,24 @@ angular
       });
   })
   .controller('ApplicationController', function($scope, $rootScope, $http, $location, Session, AuthService, AUTH_EVENTS) {
-    $scope.debug = false;
 
-    var credentials = {
-      locationId: '475343',
-      userId: 'aamco',
-      groupId: 'aamco'
+    $scope.showTimeoutModal = false;
+    $scope.timeoutModalOn = function(){
+      $scope.showTimeoutModal = true;
+    };
+    $scope.timeoutModalOff = function(){
+      $scope.showTimeoutModal = false;
     };
 
-    AuthService.login(credentials).then(function (user) {
-      if (user) {
-        $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
-        $scope.setCurrentUser(user);
-        $scope.initConnection();
-        if ($scope.debug) {
-          console.log(AUTH_EVENTS.loginSuccess);
-          console.log('Client ID: ' + user.clientId);
-          console.log('Client API Key: ' + user.clientApiKey);
-          console.log('Authenticated: ' + AuthService.isAuthenticated());
-        }
-      } else {
-        $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
-        $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
-        if ($scope.debug) {
-          console.log(AUTH_EVENTS.loginFailed);
-          console.log('Client ID: null');
-          console.log('Client API Key: null');
-          console.log('Authenticated: ' + AuthService.isAuthenticated());
-        }
-      }
-    }, function () {
-      $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
-    });
+    $scope.showCampaignModal = false;
+    $scope.toggleCampaignModal = function(){
+      $scope.showCampaignModal = !$scope.showCampaignModal;
+    };
+
+    $scope.showLocalWebsiteModal = false;
+    $scope.toggleLocalWebsiteModal = function(){
+      $scope.showLocalWebsiteModal = !$scope.showLocalWebsiteModal;
+    };
 
     $scope.menu = [
       {label: 'Campaigns', route: '/'},
@@ -89,27 +75,31 @@ angular
       $scope.connection = Session.connection;
     };
 
-    $scope.showLoginModal = false;
-    $scope.toggleLoginModal = function(){
-      $scope.showLoginModal = !$scope.showLoginModal;
+    var credentials = {
+      locationId: '475343',
+      userId: 'aamco',
+      groupId: 'aamco'
     };
-    $scope.showCampaignModal = false;
-    $scope.toggleCampaignModal = function(){
-      $scope.showCampaignModal = !$scope.showCampaignModal;
-    };
-    $scope.showLocalWebsiteModal = false;
-    $scope.toggleLocalWebsiteModal = function(){
-      $scope.showLocalWebsiteModal = !$scope.showLocalWebsiteModal;
-    };
+
+    AuthService.login(credentials).then(function (user) {
+      if (user) {
+        $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
+        $scope.setCurrentUser(user);
+        $scope.initConnection();
+      } else {
+        $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
+        $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
+      }
+    }, function () {
+      $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
+    });
+
   })
   .service('Session', function () {
     this.create = function (clientId, clientApiKey) {
       this.clientId = clientId;
       this.clientApiKey = clientApiKey;
       this.connection = new balihoo.LocalConnection(clientId, clientApiKey);
-
-      //For testing expired API key
-      //this.connection = new balihoo.LocalConnection('d9d36d9c-94ce-4263-83e5-fdcc34fe81b4', '5c7cd03c-34ba-4374-a451-06a9d39b731a');
     };
     this.destroy = function () {
       this.clientId = null;
@@ -122,11 +112,7 @@ angular
     authService.login = function (credentials) {
       var url = 'http://localhost:8888/location-plugin/app/scripts/libraries/clientAuth.php';
 
-      //API parameters - Move to a config file?
       credentials = {
-        //DEV
-        //apiKey: '81636bdb-d1ef-4364-8b57-bf7683ded94b',
-        //brandKey: 'dental',
         apiKey: '05b576d2-e895-4846-9951-4a8206a74347',
         brandKey: 'aamco',
         locationId: credentials.locationId,

@@ -13,6 +13,8 @@ angular.module('locationPluginApp')
     $timeout(function() {
       if (AuthService.isAuthenticated())
         getLocalWebsiteData();
+      else
+        $scope.timeoutModalOn();
     }, 300);
 
     function getLocalWebsiteData() {
@@ -42,7 +44,7 @@ angular.module('locationPluginApp')
         })
         .catch(function(response) {
           if (response.status == 404) {
-            $window.location.reload();
+            $scope.timeoutModalOn();
           }
         });
     }
