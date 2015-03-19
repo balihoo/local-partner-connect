@@ -86,11 +86,13 @@ $dropdown-border:    $bhoo-light-gray;
 //
 //## Define the breakpoints at which your layout will change, adapting to different screen sizes.
 
+$screen-sm: 600px;
 
 //== Grid system
 //
 //## Define your custom responsive grid.
-
+$grid-gutter-width: 30px;
+$container-tablet: (550px + $grid-gutter-width);
 
 //== Container sizes
 //
