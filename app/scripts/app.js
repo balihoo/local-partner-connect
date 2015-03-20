@@ -76,10 +76,16 @@ angular
     };
 
     var credentials = {
-      locationId: '475343',
-      userId: 'aamco',
-      groupId: 'aamco'
+      brandKey: $location.search().brandKey,
+      apiKey: $location.search().apiKey,
+      locationId: $location.search().locationId,
+      userId: $location.search().userId,
+      groupId: $location.search().groupId
     };
+
+    // Used in Google Analytics (index.html)
+    $scope.brandKey = credentials.brandKey;
+    $scope.locationId = credentials.locationId;
 
     AuthService.login(credentials).then(function (user) {
       if (user) {
@@ -112,14 +118,6 @@ angular
     authService.login = function (credentials) {
       var url = 'http://localhost:8888/location-plugin/app/scripts/libraries/clientAuth.php';
 
-      credentials = {
-        apiKey: '05b576d2-e895-4846-9951-4a8206a74347',
-        brandKey: 'aamco',
-        locationId: credentials.locationId,
-        userId: credentials.userId,
-        groupId: credentials.groupId
-      };
-
       return $http({
         method: 'POST',
         url: url,
@@ -136,14 +134,6 @@ angular
 
     authService.isAuthenticated = function () {
       return !!Session.clientId;
-    };
-
-    authService.isAuthorized = function (authorizedRoles) {
-      if (!angular.isArray(authorizedRoles)) {
-        authorizedRoles = [authorizedRoles];
-      }
-      return (authService.isAuthenticated() &&
-      authorizedRoles.indexOf(Session.userRole) !== -1);
     };
 
     return authService;
