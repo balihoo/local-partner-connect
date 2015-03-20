@@ -75,9 +75,14 @@ angular
       $scope.connection = Session.connection;
     };
 
+    // For testing purposes and debug output
+    var testFlag = $location.search().test;
+
     var credentials = {
       brandKey: $location.search().brandKey,
-      apiKey: $location.search().apiKey,
+      apiKey: testFlag ? '05b576d2-e895-4846-9951-4a8206a74347' : null,
+      clientId: $location.search().clientId,
+      clientApiKey: $location.search().clientApiKey,
       locationId: $location.search().locationId,
       userId: $location.search().userId,
       groupId: $location.search().groupId
@@ -99,7 +104,6 @@ angular
     }, function () {
       $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
     });
-
   })
   .service('Session', function () {
     this.create = function (clientId, clientApiKey) {
@@ -112,24 +116,32 @@ angular
       this.clientApiKey = null;
     };
   })
-  .factory('AuthService', function ($http, Session) {
+  .factory('AuthService', function ($http, $location, Session) {
     var authService = {};
+    var testFlag = $location.search().test;
 
     authService.login = function (credentials) {
-      var url = 'http://localhost:8888/location-plugin/app/scripts/libraries/clientAuth.php';
+      if (testFlag) {
+        var url = 'http://localhost:8888/location-plugin/app/scripts/libraries/clientAuth.php';
 
-      return $http({
-        method: 'POST',
-        url: url,
-        data: $.param(credentials),
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-      })
-        .then(function (response) {
-          if (response.data.clientId) {
-            Session.create(response.data.clientId, response.data.clientApiKey);
-            return response.data;
-          }
-        });
+        return $http({
+          method: 'POST',
+          url: url,
+          data: $.param(credentials),
+          headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        })
+          .then(function (response) {
+            if (response.data.clientId) {
+              Session.create(response.data.clientId, response.data.clientApiKey);
+              console.log('ClientID: ' + response.data.clientId);
+              console.log('ClientAPIKey: ' + response.data.clientApiKey);
+              return response.data;
+            }
+          });
+      } else {
+        Session.create(credentials.clientId, credentials.clientApiKey);
+        return credentials.clientId;
+      }
     };
 
     authService.isAuthenticated = function () {
