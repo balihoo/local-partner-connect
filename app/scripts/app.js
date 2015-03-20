@@ -92,7 +92,21 @@ angular
     $scope.brandKey = credentials.brandKey;
     $scope.locationId = credentials.locationId;
 
-    AuthService.login(credentials).then(function (user) {
+    if (testFlag) {
+      AuthService.login(credentials).then(function (user) {
+        if (user) {
+          $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
+          $scope.setCurrentUser(user);
+          $scope.initConnection();
+        } else {
+          $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
+          $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
+        }
+      }, function () {
+        $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
+      });
+    } else {
+      var user = AuthService.login(credentials);
       if (user) {
         $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
         $scope.setCurrentUser(user);
@@ -101,9 +115,7 @@ angular
         $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
         $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
       }
-    }, function () {
-      $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
-    });
+    }
   })
   .service('Session', function () {
     this.create = function (clientId, clientApiKey) {
@@ -123,7 +135,6 @@ angular
     authService.login = function (credentials) {
       if (testFlag) {
         var url = 'http://localhost:8888/location-plugin/app/scripts/libraries/clientAuth.php';
-
         return $http({
           method: 'POST',
           url: url,
