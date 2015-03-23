@@ -8,20 +8,29 @@
  * Controller of the locationPluginApp
  */
 angular.module('locationPluginApp')
-  .controller('CampaignController', function ($scope, $rootScope, $window, $http, $q, $timeout, AUTH_EVENTS, AuthService) {
+  .controller('CampaignController', [
+    '$scope',
+    '$rootScope',
+    '$window',
+    '$http',
+    '$q',
+    '$timeout',
+    'AuthService',
+
+    function ($scope, $rootScope, $window, $http, $q, $timeout, AuthService) {
 
     $timeout(function() {
       if (AuthService.isAuthenticated())
         getCampaignData();
       else
-        $scope.timeoutModalOn();
+        $('#timeoutModal').modal().show()
     }, 300);
 
     function getCampaignData() {
       $q.when($scope.connection.getAllCampaigns())
         .then(function (allCampaigns) {
           if (!allCampaigns[0]) {
-            $scope.toggleCampaignModal();
+            $('#campaignModal').modal().show()
             $('#campaignModal').on('hidden.bs.modal', function (){
               $window.location.reload();
             });
@@ -45,8 +54,8 @@ angular.module('locationPluginApp')
             });
         })
         .catch(function(response) {
-          if (response.status == 404) {
-            $scope.timeoutModalOn();
+          if (response.status === 404) {
+            $('#timeoutModal').modal().show()
           }
         });
 
@@ -66,14 +75,14 @@ angular.module('locationPluginApp')
               })
             })
             .catch(function (response) {
-              if (response.status == 404) {
-                $scope.timeoutModalOn();
+              if (response.status === 404) {
+                $('#timeoutModal').modal().show()
               }
             });
         } else {
-          $scope.timeoutModalOn();
+          $('#timeoutModal').modal().show()
         }
       };
     }
 
-  });
+  }]);

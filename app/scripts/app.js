@@ -33,25 +33,16 @@ angular
         redirectTo: '/'
       });
   })
-  .controller('ApplicationController', function($scope, $rootScope, $http, $location, Session, AuthService, AUTH_EVENTS) {
+  .controller('ApplicationController', [
+    '$scope',
+    '$rootScope',
+    '$http',
+    '$location',
+    'Session',
+    'AuthService',
+    'AUTH_EVENTS',
 
-    $scope.showTimeoutModal = false;
-    $scope.timeoutModalOn = function(){
-      $scope.showTimeoutModal = true;
-    };
-    $scope.timeoutModalOff = function(){
-      $scope.showTimeoutModal = false;
-    };
-
-    $scope.showCampaignModal = false;
-    $scope.toggleCampaignModal = function(){
-      $scope.showCampaignModal = !$scope.showCampaignModal;
-    };
-
-    $scope.showLocalWebsiteModal = false;
-    $scope.toggleLocalWebsiteModal = function(){
-      $scope.showLocalWebsiteModal = !$scope.showLocalWebsiteModal;
-    };
+    function($scope, $rootScope, $http, $location, Session, AuthService, AUTH_EVENTS) {
 
     $scope.menu = [
       {label: 'Campaigns', route: '/'},
@@ -116,7 +107,7 @@ angular
         $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
       }
     }
-  })
+  }])
   .service('Session', function () {
     this.create = function (clientId, clientApiKey) {
       this.clientId = clientId;

@@ -8,20 +8,28 @@
  * Controller of the locationPluginApp
  */
 angular.module('locationPluginApp')
-  .controller('LocalWebsiteController', function ($scope, $rootScope, $q, $window, $timeout, AUTH_EVENTS, AuthService) {
+  .controller('LocalWebsiteController', [
+    '$scope',
+    '$rootScope',
+    '$q',
+    '$window',
+    '$timeout',
+    'AuthService',
+
+  function ($scope, $rootScope, $q, $window, $timeout, AuthService) {
 
     $timeout(function() {
       if (AuthService.isAuthenticated())
         getLocalWebsiteData();
       else
-        $scope.timeoutModalOn();
+        $('#timeoutModal').modal().show()
     }, 300);
 
     function getLocalWebsiteData() {
       $q.when($scope.connection.getWebsiteMetrics())
         .then(function (websiteMetrics) {
           if (!websiteMetrics) {
-            $scope.toggleLocalWebsiteModal();
+            $('#localWebsiteModal').modal().show()
             $('#localWebsiteModal').on('hidden.bs.modal', function (){
               $window.location.reload();
             });
@@ -43,10 +51,10 @@ angular.module('locationPluginApp')
           return $scope.websiteMetrics = websiteMetrics;
         })
         .catch(function(response) {
-          if (response.status == 404) {
-            $scope.timeoutModalOn();
+          if (response.status === 404) {
+            $('#timeoutModal').modal().show()
           }
         });
     }
 
-  });
+  }]);
