@@ -71,7 +71,7 @@ angular
 
     var credentials = {
       brandKey: $location.search().brandKey,
-      apiKey: testFlag ? '05b576d2-e895-4846-9951-4a8206a74347' : null,
+      apiKey: testFlag ? 'fa7f7a98-24de-44cc-9406-9ae3a7e30c46' : null,
       clientId: $location.search().clientId,
       clientApiKey: $location.search().clientApiKey,
       locationId: $location.search().locationId,
