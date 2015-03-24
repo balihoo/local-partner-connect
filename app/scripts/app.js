@@ -82,6 +82,10 @@ angular
     // Used in Google Analytics (index.html)
     $scope.brandKey = credentials.brandKey;
     $scope.locationId = credentials.locationId;
+    $scope.gaEvent = function(category) {
+      ga('send', 'event', category, 'Click Link');
+      console.log('gaEvent');
+    }
 
     if (testFlag) {
       AuthService.login(credentials).then(function (user) {

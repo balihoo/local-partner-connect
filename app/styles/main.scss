@@ -17,6 +17,10 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
  *
  *******************/
 
+.ls-chart:focus {
+  outline: 0;
+}
+
 .animate-repeat-campaigns {
   //list-style:none;
   -webkit-transition: 0.4s ease-in-out all;

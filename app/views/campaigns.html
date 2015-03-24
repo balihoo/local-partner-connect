@@ -12,7 +12,7 @@
         <div class="col-sm-4 col-campaigns">
           <div class="list-group">
             <!-- Campaign List Group Item -->
-            <a class="campaign-nav list-group-item animate-repeat-campaigns" ng-repeat="campaign in campaigns | orderBy: 'id'" ng-click="loadTactics(campaign.id); $parent.selected = campaign" ng-class="{active: selected == campaign}">
+            <a class="campaign-nav list-group-item animate-repeat-campaigns" ng-repeat="campaign in campaigns | orderBy: 'id'" ng-click="loadTactics(campaign.id); $parent.selected = campaign; gaEvent('Switch Campaigns')" ng-class="{active: selected == campaign}">
 
               <h4 class="list-group-item-heading">{{campaign.title}}</h4>
               <div class="list-group-item-text">
@@ -33,7 +33,7 @@
                     <div class="col-sm-12">
                       <p class="panel-title">{{tactic.title}}</p>
                     </div>
-    
+
                   </div>
                 </div>
                 <div class="panel-body">

@@ -8,12 +8,12 @@
             <div class="panel-heading clearfix">
               <p class="no-space-after pull-left">Visits</p>
               <div id="visits-toggle" class="btn-group pull-right" role="group" aria-label="...">
-                <button id="visits-pie" type="button" class="btn btn-default btn-xs active" data-target="visitsChart" data-chart-type="donut" >Donut</button>
-                <button id="visits-bar" type="button" class="btn btn-default btn-xs" data-target="visitsChart" data-chart-type="bar" >Bar</button>
+                <button id="visits-pie" type="button" class="btn btn-default btn-xs active" data-target="visitsChart" data-chart-type="donut" ng-click="gaEvent('Visits Donut Chart View')" >Donut</button>
+                <button id="visits-bar" type="button" class="btn btn-default btn-xs" data-target="visitsChart" data-chart-type="bar" ng-click="gaEvent('Visits Bar Chart View')" >Bar</button>
               </div>
             </div>
             <div class="panel-body">
-              <div id="visits-chart" class="ls-chart"></div>
+              <div id="visits-chart" class="ls-chart" ng-click="gaEvent('Visits Chart Interaction')"></div>
             </div>
             <div class="table-responsive">
               <table class="table table-hover table-condensed">
@@ -51,12 +51,12 @@
             <div class="panel-heading clearfix">
               <p class="no-space-after pull-left">Leads</p>
               <div id="leads-toggle" class="btn-group pull-right" role="group" aria-label="...">
-                <button id="leads-pie" type="button" class="btn btn-default btn-xs active" data-target="leadsChart" data-chart-type="donut" >Donut</button>
-                <button id="leads-bar" type="button" class="btn btn-default btn-xs" data-target="leadsChart" data-chart-type="bar" >Bar</button>
+                <button id="leads-pie" type="button" class="btn btn-default btn-xs active" data-target="leadsChart" data-chart-type="donut" ng-click="gaEvent('Leads Donut Chart View')">Donut</button>
+                <button id="leads-bar" type="button" class="btn btn-default btn-xs" data-target="leadsChart" data-chart-type="bar" ng-click="gaEvent('Leads Bar Chart View')">Bar</button>
               </div>
             </div>
             <div class="panel-body">
-              <div id="leads-chart" class="ls-chart"></div>
+              <div id="leads-chart" class="ls-chart" ng-click="gaEvent('Leads Chart Interaction')"></div>
             </div>
             <div class="table-responsive">
               <table class="table table-hover table-condensed">
