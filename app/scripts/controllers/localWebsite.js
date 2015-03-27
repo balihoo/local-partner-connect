@@ -44,8 +44,10 @@ angular.module('locationPluginApp')
           });
           leadsChart.load({
             columns: [
-              ['Web', websiteMetrics.leads.web],
-              ['Phone', websiteMetrics.leads.phone]
+              ['Web (Organic)', websiteMetrics.leads.organicWeb],
+              ['Web (Paid)', websiteMetrics.leads.paidWeb],
+              ['Phone (Organic)', websiteMetrics.leads.organicPhone],
+              ['Phone (Paid)', websiteMetrics.leads.paidPhone],
             ]
           });
           return $scope.websiteMetrics = websiteMetrics;

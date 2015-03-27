@@ -37,8 +37,12 @@
                     <td>{{websiteMetrics.visits.referral}}</td>
                   </tr>
                   <tr>
+                    <td class="text-info">Paid</td>
+                    <td>{{websiteMetrics.visits.paid}}</td>
+                  </tr>
+                  <tr>
                     <td>Total</td>
-                    <td>{{websiteMetrics.visits.total}}</td>
+                    <td>{{websiteMetrics.visits.total}} ( {{websiteMetrics.visits.newVisitsPercent * 100 | number: 0}}% new )</td>
                   </tr>
                 </tbody>
               </table>
@@ -68,20 +72,24 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td class="text-success">Web</td>
-                    <td>{{websiteMetrics.leads.web}}</td>
+                    <td class="text-success">Web (Organic)</td>
+                    <td>{{websiteMetrics.leads.organicWeb}}</td>
                   </tr>
                   <tr>
-                    <td class="text-warning">Phone</td>
-                    <td>{{websiteMetrics.leads.phone}}</td>
+                    <td class="text-danger">Web (Paid)</td>
+                    <td>{{websiteMetrics.leads.paidWeb}}</td>
+                  </tr>
+                  <tr>
+                    <td class="text-warning">Phone (Organic)</td>
+                    <td>{{websiteMetrics.leads.organicPhone}}</td>
+                  </tr>
+                  <tr>
+                    <td class="text-info">Phone (Paid)</td>
+                    <td>{{websiteMetrics.leads.paidPhone}}</td>
                   </tr>
                   <tr>
                     <td>Total</td>
                     <td>{{websiteMetrics.leads.total}}</td>
-                  </tr>
-                  <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                   </tr>
                 </tbody>
               </table>
@@ -141,8 +149,10 @@
       columns: [
       ],
       colors: {
-        Web: '#78a09e',
-        Phone: '#efc75e'
+        'Web (Organic)': '#78a09e',
+        'Web (Paid)': '#e2574c',
+        'Phone (Organic)': '#efc75e',
+        'Phone (Paid)': '#bfb672'
       },
       type : 'donut'
     },
