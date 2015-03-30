@@ -39,10 +39,14 @@ angular.module('locationPluginApp')
             columns: [
               ['Organic', websiteMetrics.visits.organic],
               ['Direct', websiteMetrics.visits.direct],
-              ['Referral', websiteMetrics.visits.referral]
+              ['Referral', websiteMetrics.visits.referral],
+              ['Paid', 12]  // Static value until metric in PROD
             ]
           });
-          $('#visits-chart .c3-chart-arcs-title').text(websiteMetrics.visits.total + ' Visits');
+          $('#visits-chart .c3-chart-arcs-title').html(
+            '<tspan x="0" dy="0em">' + websiteMetrics.visits.total + ' Visits' + '</tspan>' +
+            '<tspan x="0" dy="1em">' + '(' + Math.round(websiteMetrics.visits.newVisitsPercent * 100) + '% new)' + '</tspan>'
+          );
           leadsChart.load({
             columns: [
               ['Web (Organic)', websiteMetrics.leads.organicWeb],
