@@ -42,6 +42,7 @@ angular.module('locationPluginApp')
               ['Referral', websiteMetrics.visits.referral]
             ]
           });
+          $('#visits-chart .c3-chart-arcs-title').text(websiteMetrics.visits.total + ' Visits');
           leadsChart.load({
             columns: [
               ['Web (Organic)', websiteMetrics.leads.organicWeb],
@@ -50,6 +51,7 @@ angular.module('locationPluginApp')
               ['Phone (Paid)', websiteMetrics.leads.paidPhone],
             ]
           });
+          $('#leads-chart .c3-chart-arcs-title').text(websiteMetrics.leads.total + ' Leads');
           return $scope.websiteMetrics = websiteMetrics;
         })
         .catch(function(response) {

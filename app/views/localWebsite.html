@@ -127,7 +127,12 @@
       }
     },
     donut: {
-      title: "Visits"
+      title: "Visits",
+      label: {
+        format: function (value, ratio, id) {
+          return value;
+        }
+      }
     }
   });
 
@@ -164,7 +169,12 @@
       }
     },
     donut: {
-      title: "Leads"
+      title: "Leads",
+      label: {
+        format: function (value, ratio, id) {
+          return value;
+        }
+      }
     }
   });
 
