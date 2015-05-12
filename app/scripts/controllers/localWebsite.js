@@ -28,13 +28,6 @@ angular.module('locationPluginApp')
     function getLocalWebsiteData() {
       $q.when($scope.connection.getWebsiteMetrics())
         .then(function (websiteMetrics) {
-          if (!websiteMetrics) {
-            $('#localWebsiteModal').modal().show()
-            $('#localWebsiteModal').on('hidden.bs.modal', function (){
-              $window.location.reload();
-            });
-            throw new Error("No local website data was found");
-          }
           visitsChart.load({
             columns: [
               ['Organic', websiteMetrics.visits.organic],

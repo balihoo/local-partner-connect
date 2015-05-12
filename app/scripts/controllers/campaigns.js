@@ -20,20 +20,41 @@ angular.module('locationPluginApp')
     function ($scope, $rootScope, $window, $http, $q, $timeout, AuthService) {
 
     $timeout(function() {
-      if (AuthService.isAuthenticated())
+      if (AuthService.isAuthenticated()) {
+        loadTabs();
         getCampaignData();
-      else
+      }
+      else {
         $('#timeoutModal').modal().show()
+      }
     }, 300);
+
+    function loadTabs() {
+      $q.when($scope.connection.getAllCampaigns())
+        .then(function (allCampaigns) {
+          if (!allCampaigns[0]) {
+            $scope.menu.splice(0, 1);
+            $window.location = '#/localWebsite';
+            throw new Error("No campaigns were found");
+          }
+        });
+
+      $q.when($scope.connection.getWebsiteMetrics())
+        .then(function (websiteMetrics) {
+          if (websiteMetrics.visits.total + websiteMetrics.leads.total == 0) {
+            $scope.menu.splice(1, 1);
+            $window.location = '#/';
+            throw new Error("No local website data was found");
+          }
+        });
+    }
 
     function getCampaignData() {
       $q.when($scope.connection.getAllCampaigns())
         .then(function (allCampaigns) {
           if (!allCampaigns[0]) {
-            $('#campaignModal').modal().show()
-            $('#campaignModal').on('hidden.bs.modal', function (){
-              $window.location.reload();
-            });
+            $scope.menu.splice(0, 1);
+            $window.location = '#/localWebsite';
             throw new Error("No campaigns were found");
           }
           $scope.selected = allCampaigns[0];
