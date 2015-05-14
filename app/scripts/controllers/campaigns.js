@@ -32,7 +32,7 @@ angular.module('locationPluginApp')
     function loadTabs() {
       $q.when($scope.connection.getAllCampaigns())
         .then(function (allCampaigns) {
-          if (!allCampaigns[0]) {
+          if (!allCampaigns[0] && $scope.menu[0].label == 'Campaigns') {
             $scope.menu.splice(0, 1);
             $window.location = '#/localWebsite';
             throw new Error("No campaigns were found");
@@ -41,7 +41,7 @@ angular.module('locationPluginApp')
 
       $q.when($scope.connection.getWebsiteMetrics())
         .then(function (websiteMetrics) {
-          if (websiteMetrics.visits.total + websiteMetrics.leads.total == 0) {
+          if ((websiteMetrics.visits.total + websiteMetrics.leads.total == 0) && ($scope.menu[1].label == 'Local Website')) {
             $scope.menu.splice(1, 1);
             $window.location = '#/';
             throw new Error("No local website data was found");
