@@ -23,10 +23,18 @@ angular.module('locationPluginApp')
         getProfileData();
       else
         $('#timeoutModal').modal().show()
-    }, 300);
+    }, 600);
 
     function getProfileData() {
-      console.log('ProfileController: Authenticated');
+      $q.when($scope.connection.getProfileData())
+        .then(function (profileData) {
+          return $scope.profileData = profileData;
+        })
+        .catch(function(response) {
+          if (response.status === 404) {
+            $('#timeoutModal').modal().show()
+          }
+        });
     }
 
   }]);
