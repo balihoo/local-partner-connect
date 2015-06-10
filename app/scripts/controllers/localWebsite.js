@@ -23,7 +23,7 @@ angular.module('locationPluginApp')
         getLocalWebsiteData();
       else
         $('#timeoutModal').modal().show()
-    }, 600);
+    }, 300);
 
     function getLocalWebsiteData() {
       $q.when($scope.connection.getWebsiteMetrics())

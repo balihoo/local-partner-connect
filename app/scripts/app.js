@@ -76,20 +76,21 @@ angular
 
     var credentials = {
       brandKey: $location.search().brandKey,
-      apiKey: testFlag ? $location.search().apiKey : null,
+      apiKey: testFlag ? '5e33ca75-0d84-4408-97da-0bfc64332b74' : null, //trek 5e33ca75-0d84-4408-97da-0bfc64332b74 //aamco f2262896-7a98-4ab4-99af-5bea2c5200cf demo(dev) 39ccf791-7b07-4c26-a1a9-0a2e82fe7071
       clientId: $location.search().clientId,
       clientApiKey: $location.search().clientApiKey,
-      locationKey: $location.search().locationKey,
+      locationId: $location.search().locationId,
       userId: $location.search().userId,
       groupId: $location.search().groupId
     };
 
     // Used in Google Analytics (index.html)
     $scope.brandKey = credentials.brandKey;
-    $scope.locationKey = credentials.locationKey;
+    $scope.locationId = credentials.locationId;
     $scope.gaEvent = function(category) {
-      ga('send', 'event', category, 'Click Link');;
-    };
+      ga('send', 'event', category, 'Click Link');
+      console.log('gaEvent');
+    }
 
     if (testFlag) {
       AuthService.login(credentials).then(function (user) {
