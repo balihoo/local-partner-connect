@@ -9,7 +9,7 @@ $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_POST, 1);
 curl_setopt($ch, CURLOPT_POSTFIELDS,
-    "apiKey={$_POST['apiKey']}&brandKey={$_POST['brandKey']}&locationId={$_POST['locationId']}&userId={$_POST['userId']}&groupId={$_POST['groupId']}");
+    "apiKey={$_POST['apiKey']}&brandKey={$_POST['brandKey']}&locationKey={$_POST['locationKey']}&userId={$_POST['userId']}&groupId={$_POST['groupId']}");
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
 $server_output = curl_exec($ch);
