@@ -23,15 +23,15 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 
 .animate-repeat-campaigns {
   //list-style:none;
-  -webkit-transition: 0.4s ease-in-out all;
-  transition: 0.4s ease-in-out all;
+  -webkit-transition: 0.1s ease-in-out all;
+  transition: 0.1s ease-in-out all;
 }
 
 .animate-repeat-campaigns.ng-move,
 .animate-repeat-campaigns.ng-enter,
 .animate-repeat-campaigns.ng-leave {
-  -webkit-transition:all ease-in-out 0.4s;
-  transition:all ease-in-out 0.4s;
+  -webkit-transition:all ease-in-out 0.1s;
+  transition:all ease-in-out 0.1s;
 }
 
 .animate-repeat-campaigns.ng-leave.ng-leave-active,
@@ -50,15 +50,15 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 
 .animate-repeat-tactics {
   //list-style:none;
-  -webkit-transition: 0.7s ease-in-out all;
-  transition: 0.7s ease-in-out all;
+  -webkit-transition: 0.1s ease-in-out all;
+  transition: 0.1s ease-in-out all;
 }
 
 .animate-repeat-tactics.ng-move,
 .animate-repeat-tactics.ng-enter,
 .animate-repeat-tactics.ng-leave {
-  -webkit-transition:all ease-in-out 0.7s;
-  transition:all ease-in-out 0.7s;
+  -webkit-transition:all ease-in-out 0.65s;
+  transition:all ease-in-out 0.65s;
 }
 
 .animate-repeat-tactics.ng-leave.ng-leave-active,
@@ -114,11 +114,11 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 
   .col-login input {
     display: block;
-//    font-size:12px;
-//    padding:4px 2px;
-//    border:solid 1px #aacfe4;
-//    width:70px;
-//    margin:2px 0 20px 10px;
+    //    font-size:12px;
+    //    padding:4px 2px;
+    //    border:solid 1px #aacfe4;
+    //    width:70px;
+    //    margin:2px 0 20px 10px;
   }
 }
 
