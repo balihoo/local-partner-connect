@@ -6,66 +6,15 @@
 
 <div class="container pull-left">
     <div class="col-profile">
-
       <div class="row">
         <div class="col-sm-12 col-campaigns">
-          <!--<table>-->
-            <!--<th>Profile Data:</th>-->
-            <!--<tr ng-repeat="(key, value) in profileData">-->
-              <!--<td>{{key}}</td>-->
-              <!--<td>{{value}}</td>-->
-              <!--<td></td>-->
-            <!--</tr>-->
-            <!--<th>Profile Form:</th>-->
-            <!--<tr ng-repeat="(key, value) in profileForm">-->
-              <!--<td>{{key}}</td>-->
-              <!--<td>{{value}}</td>-->
-              <!--<td></td>-->
-            <!--</tr>-->
-          <!--</table>-->
-
-          <div class="panel-body">
-            <form>
-              <label for="incomingData">Incoming Data</label>
-              <input type="text" id="incomingData" size="100" value='{{profileData}}' />
-              <br>
-              <label for="outgoingData">Outgoing Data</label>
-              <input type="text" id="outgoingData" size="100" />
-            </form>
-            <button id="updateDataButton">Update Data</button>
-            <button id="sendDataButton">Send Data</button>
-            <br><br><br>
-            <div id="formTarget"></div>
-            <!--<br>-->
-            <!--<button id="saveButton">Save Profile</button>-->
+          <div id="formPanel" class="panel panel-default hidden">
+            <div class="panel-body">
+              <div id="formTarget"></div><br>
+              <button id="saveProfileButton" class="btn btn-primary hidden">Save Profile</button>
+            </div>
           </div>
-
         </div>
       </div>
-
     </div>
 </div>
-
-<!--<script>-->
-  <!--var form;-->
-  <!--var model;-->
-
-  <!--$(function(){-->
-    <!--form = $('#formTarget');-->
-
-    <!--form.renderForm({{$renderUri}}, $('#formData').val())-->
-    <!--.fail(function(){-->
-      <!--$('#formTarget').text('Unable to render form, try again later');-->
-    <!--}).done(function(){-->
-      <!--model = this;-->
-      <!--updateCapturedData();-->
-    <!--});-->
-
-<!--//  $('#updateDataButton').click(updateCapturedData);-->
-  <!--});-->
-  <!---->
-<!--//  function updateCapturedData() {-->
-<!--//    var outputData = model.buildOutputData();-->
-<!--//    $('#formData').val(JSON.stringify(outputData));-->
-<!--//  }-->
-<!--</script>-->

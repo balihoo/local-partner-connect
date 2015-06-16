@@ -67,21 +67,21 @@
                         </div>
                         <div class="row" ng-switch-when="Display">
                             <div class="col-sm-4 col-xs-6 text-center" tooltip data-toggle="tooltip" data-placement="bottom" title="Impressions: the number of times your ad was displayed to potential customers">
-                                <p class="bh-metric bh-metric-impressions">{{tactic.impressions ? tactic.impressions : "---"}}
+                                <p class="bh-metric bh-metric-impressions">{{tactic.impressions}}
                                     <span class="bh-metric-label">Impressions</span></p>
                             </div>
                             <div class="col-sm-4 col-xs-6 text-center" tooltip data-toggle="tooltip" data-placement="bottom" title="Spend: the total cost of purchasing clicks">
-                                <p class="bh-metric bh-metric-cost">${{tactic.spend ? tactic.spend : "---"}}
+                                <p class="bh-metric bh-metric-cost">${{tactic.spend}}
                                     <span class="bh-metric-label">Cost</span></p>
                             </div>
                         </div>
                         <div class="row" ng-switch-when="Paid Search">
                             <div class="col-sm-4 col-xs-6 text-center" tooltip data-toggle="tooltip" data-placement="bottom" title="Clicks: the number of times potential customers clicked your ad">
-                                <p class="bh-metric bh-metric-clicks">{{tactic.clicks ? tactic.clicks : "---"}}
+                                <p class="bh-metric bh-metric-clicks">{{tactic.clicks}}
                                     <span class="bh-metric-label">Clicks</span></p>
                             </div>
                             <div class="col-sm-4 col-xs-6 text-center" tooltip data-toggle="tooltip" data-placement="bottom" title="Spend: the total cost of purchasing clicks">
-                                <p class="bh-metric bh-metric-cost">${{tactic.spend ? tactic.spend : "---"}}
+                                <p class="bh-metric bh-metric-cost">${{tactic.spend}}
                                     <span class="bh-metric-label">Cost</span></p>
                             </div>
                         </div>
