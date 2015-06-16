@@ -64,7 +64,7 @@ angular.module('locationPluginApp')
               });
           })
           .catch(function(response) {
-            if (response.status === 404) {
+            if (response.status == 0) {
               $('#timeoutModal').modal().show()
             }
           });
@@ -85,7 +85,7 @@ angular.module('locationPluginApp')
                 })
               })
               .catch(function (response) {
-                if (response.status === 404) {
+                if (response.status == 0) {
                   $('#timeoutModal').modal().show()
                 }
               });

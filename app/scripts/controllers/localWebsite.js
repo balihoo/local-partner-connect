@@ -52,7 +52,7 @@ angular.module('locationPluginApp')
           return $scope.websiteMetrics = websiteMetrics;
         })
         .catch(function(response) {
-          if (response.status === 404) {
+          if (response.status == 0) {
             $('#timeoutModal').modal().show()
           }
         });
