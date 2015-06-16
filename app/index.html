@@ -30,7 +30,7 @@
       </div>
       <div class="collapse navbar-collapse" id="primary-navigation">
         <ul class="nav navbar-nav">
-          <li ng-repeat="item in menu" ng-class="{active: item.route == menuActive}"><a class="animate-repeat-campaigns" ng-href="#{{item.route}}">{{item.label}}</a></li>
+          <li ng-repeat="item in menu" ng-class="{active: item.route == menuActive}" ng-show="item.show"><a class="animate-repeat-campaigns" ng-href="#{{item.route}}">{{item.label}}</a></li>
         </ul>
       </div>
     </div>

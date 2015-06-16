@@ -1,17 +1,71 @@
+<script>
+  if (typeof Function.prototype.bind === "undefined") { Function.prototype.bind = function() { var fn = this, args = [].slice.call( arguments ), object = args.shift(); return function() { return fn.apply( object, args.concat( [].slice.call(arguments) ) ); }; }; } if (typeof RegExp.prototype.test.bind === "undefined") { RegExp.prototype.test.bind = Function.prototype.bind; }
+</script>
+<link rel="stylesheet" type="text/css" href="../styles/FormRender.css">
+<script src="scripts/libraries/FormRender.js"></script>
+
 <div class="container pull-left">
     <div class="col-profile">
 
       <div class="row">
         <div class="col-sm-12 col-campaigns">
-          <table>
-            <tr ng-repeat="(key, value) in profileData">
-              <td>{{key}}</td>
-              <td>{{value}}</td>
-              <td></td>
-            </tr>
-          </table>
+          <!--<table>-->
+            <!--<th>Profile Data:</th>-->
+            <!--<tr ng-repeat="(key, value) in profileData">-->
+              <!--<td>{{key}}</td>-->
+              <!--<td>{{value}}</td>-->
+              <!--<td></td>-->
+            <!--</tr>-->
+            <!--<th>Profile Form:</th>-->
+            <!--<tr ng-repeat="(key, value) in profileForm">-->
+              <!--<td>{{key}}</td>-->
+              <!--<td>{{value}}</td>-->
+              <!--<td></td>-->
+            <!--</tr>-->
+          <!--</table>-->
+
+          <div class="panel-body">
+            <form>
+              <label for="incomingData">Incoming Data</label>
+              <input type="text" id="incomingData" size="100" value='{{profileData}}' />
+              <br>
+              <label for="outgoingData">Outgoing Data</label>
+              <input type="text" id="outgoingData" size="100" />
+            </form>
+            <button id="updateDataButton">Update Data</button>
+            <button id="sendDataButton">Send Data</button>
+            <br><br><br>
+            <div id="formTarget"></div>
+            <!--<br>-->
+            <!--<button id="saveButton">Save Profile</button>-->
+          </div>
+
         </div>
       </div>
 
     </div>
 </div>
+
+<!--<script>-->
+  <!--var form;-->
+  <!--var model;-->
+
+  <!--$(function(){-->
+    <!--form = $('#formTarget');-->
+
+    <!--form.renderForm({{$renderUri}}, $('#formData').val())-->
+    <!--.fail(function(){-->
+      <!--$('#formTarget').text('Unable to render form, try again later');-->
+    <!--}).done(function(){-->
+      <!--model = this;-->
+      <!--updateCapturedData();-->
+    <!--});-->
+
+<!--//  $('#updateDataButton').click(updateCapturedData);-->
+  <!--});-->
+  <!---->
+<!--//  function updateCapturedData() {-->
+<!--//    var outputData = model.buildOutputData();-->
+<!--//    $('#formData').val(JSON.stringify(outputData));-->
+<!--//  }-->
+<!--</script>-->

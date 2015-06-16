@@ -49,9 +49,9 @@ angular
     function($scope, $rootScope, $http, $location, Session, AuthService, AUTH_EVENTS) {
 
     $scope.menu = [
-      {label: 'Campaigns', route: '/'},
-      {label: 'Local Website', route: '/localWebsite'},
-      {label: 'Profile', route: '/profile'}
+      {label: 'Campaigns', route: '/', show: false},
+      {label: 'Local Website', route: '/localWebsite', show: false},
+      {label: 'Profile', route: '/profile', show: false}
     ];
 
     $scope.menuActive = '/';

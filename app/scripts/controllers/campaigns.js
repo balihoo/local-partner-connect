@@ -32,19 +32,23 @@ angular.module('locationPluginApp')
     function loadTabs() {
       $q.when($scope.connection.getWebsiteMetrics())
         .then(function (websiteMetrics) {
-          if ((websiteMetrics.visits.total + websiteMetrics.leads.total == 0) && ($scope.menu[1].label == 'Local Website')) {
-            $scope.menu.splice(1, 1);
-            $window.location = '#/';
-          }
+          if (websiteMetrics.visits.total + websiteMetrics.leads.total > 0)
+            $scope.menu[1].show = true;
         });
+
+      $q.when($scope.connection.getProfileForm())
+        .then(function (profileForm) {
+          if (profileForm)
+            $scope.menu[2].show = true;
+        })
     }
 
     function getCampaignData() {
       $q.when($scope.connection.getAllCampaigns())
         .then(function (allCampaigns) {
-          if (!allCampaigns[0]) {
-            $scope.menu.splice(0, 1);
-            $window.location = '#/localWebsite';
+          if (allCampaigns[0]) {
+            $scope.menu[0].show = true;
+            $window.location = '#/';
           }
           $scope.selected = allCampaigns[0];
           return $scope.campaigns = allCampaigns;
@@ -64,7 +68,7 @@ angular.module('locationPluginApp')
             });
         })
         .catch(function(response) {
-          if (response.status === 404) {
+          if (response.status == 0) {
             $('#timeoutModal').modal().show()
           }
         });
@@ -85,7 +89,7 @@ angular.module('locationPluginApp')
               })
             })
             .catch(function (response) {
-              if (response.status === 404) {
+              if (response.status == 0) {
                 $('#timeoutModal').modal().show()
               }
             });
