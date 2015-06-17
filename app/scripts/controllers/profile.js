@@ -52,6 +52,7 @@ angular.module('locationPluginApp')
 
       form.renderForm(profileForm)
         .fail(function(){
+          $('#formPanel').removeClass('hidden');
           $('#formTarget').text('Unable to render form. Please try again later.');
         }).done(function(){
           model = this;
