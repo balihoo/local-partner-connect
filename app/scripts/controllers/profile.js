@@ -18,7 +18,6 @@ angular.module('locationPluginApp')
     'AuthService',
 
   function ($scope, $rootScope, $q, $window, $timeout, $route, AuthService) {
-
     var form;
     var model;
     var outputData;
@@ -33,13 +32,12 @@ angular.module('locationPluginApp')
     function getProfileData() {
       $q.when($scope.connection.getProfileData())
         .then(function (profileData) {
-          return $scope.profileData = profileData;
+          return profileData;
         })
         .then(function (profileData) {
           $q.when($scope.connection.getProfileForm())
             .then(function (profileForm) {
               loadForm(profileForm, profileData);
-              return $scope.profileForm = profileForm;
             })
         })
         .catch(function(response) {
@@ -70,8 +68,13 @@ angular.module('locationPluginApp')
       outputData = model.buildOutputData();
       $q.when($scope.connection.updateProfileData(outputData))
         .then(function () {
-          $route.reload();
+          getProfileData();
         })
+        .catch(function(response) {
+          if (response.status == 0) {
+            $('#formTarget').text('Error saving profile. Please try again later.');
+            $('#timeoutModal').modal().show();
+          }
+        });
     }
-
   }]);
