@@ -129,7 +129,7 @@ angular
 
     authService.login = function (credentials) {
       if (testFlag) {
-        var url = 'http://localhost:8888/location-plugin/app/scripts/libraries/clientAuth.php';
+        var url = 'http://localhost[:XXXX]/[PATH]/app/scripts/libraries/clientAuth.php';
         return $http({
           method: 'POST',
           url: url,
