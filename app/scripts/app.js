@@ -84,8 +84,7 @@ angular
     $scope.locationKey = credentials.locationKey;
     $scope.gaEvent = function(category) {
       ga('send', 'event', category, 'Click Link');
-      console.log('gaEvent');
-    }
+    };
 
     if (testFlag) {
       AuthService.login(credentials).then(function (user) {
@@ -114,9 +113,11 @@ angular
   }])
   .service('Session', function () {
     this.create = function (clientId, clientApiKey) {
+      this.config = {};
       this.clientId = clientId;
       this.clientApiKey = clientApiKey;
-      this.connection = new balihoo.LocalConnection(clientId, clientApiKey);
+      this.config.baseUrl = 'https://bac.dev.balihoo-cloud.com';  // Dev environment LPC API
+      this.connection = new balihoo.LocalConnection(clientId, clientApiKey, this.config);
     };
     this.destroy = function () {
       this.clientId = null;
