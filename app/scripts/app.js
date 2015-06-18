@@ -113,9 +113,11 @@ angular
   }])
   .service('Session', function () {
     this.create = function (clientId, clientApiKey) {
+      this.config = {};
       this.clientId = clientId;
       this.clientApiKey = clientApiKey;
-      this.connection = new balihoo.LocalConnection(clientId, clientApiKey);
+      this.config.baseUrl = 'https://bac.dev.balihoo-cloud.com';
+      this.connection = new balihoo.LocalConnection(clientId, clientApiKey, this.config);
     };
     this.destroy = function () {
       this.clientId = null;
