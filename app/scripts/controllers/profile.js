@@ -21,6 +21,7 @@ angular.module('locationPluginApp')
     var form;
     var model;
     var outputData;
+    var saveProfileButton;
 
     $timeout(function() {
       if (AuthService.isAuthenticated())
@@ -49,6 +50,7 @@ angular.module('locationPluginApp')
 
     function loadForm(profileForm, profileData) {
       form = $('#formTarget');
+      saveProfileButton = $('#saveProfileButton');
 
       form.renderForm(profileForm)
         .fail(function(){
@@ -58,13 +60,13 @@ angular.module('locationPluginApp')
           model = this;
           formbuilder.applyData(model, profileData);
           $('#formPanel').removeClass('hidden');
-          $('#saveProfileButton').removeClass('hidden');
-          $('#saveProfileButton').click(sendData);
+          saveProfileButton.removeClass('hidden');
+          saveProfileButton.click(sendData);
         });
     }
 
     function sendData() {
-      $('#saveProfileButton').addClass('hidden');
+      saveProfileButton.addClass('hidden');
       $('#formTarget').text('Saving profile. Please wait...');
       outputData = model.buildOutputData();
       $q.when($scope.connection.updateProfileData(outputData))
