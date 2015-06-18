@@ -2,7 +2,7 @@
   exports.balihoo = exports.balihoo || {};
 
   var version = "v1.0";
-  var defaultUrl = "http://bac.balihoo-cloud.com";
+  var defaultUrl = "http://bac.dev.balihoo-cloud.com";
 
   /**
    * constructor for a LocationApi object
