@@ -88,7 +88,7 @@ angular
     $scope.brandKey = credentials.brandKey;
     $scope.locationKey = credentials.locationKey;
     $scope.gaEvent = function(category) {
-      ga('send', 'event', category, 'Click Link');;
+      ga('send', 'event', category, 'Click Link');
     };
 
     if (testFlag) {
@@ -118,9 +118,11 @@ angular
   }])
   .service('Session', function () {
     this.create = function (clientId, clientApiKey) {
+      this.config = {};
       this.clientId = clientId;
       this.clientApiKey = clientApiKey;
-      this.connection = new balihoo.LocalConnection(clientId, clientApiKey);
+      this.config.baseUrl = 'https://bac.dev.balihoo-cloud.com';  // Dev environment LPC API
+      this.connection = new balihoo.LocalConnection(clientId, clientApiKey, this.config);
     };
     this.destroy = function () {
       this.clientId = null;

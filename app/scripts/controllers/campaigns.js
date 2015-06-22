@@ -19,15 +19,15 @@ angular.module('locationPluginApp')
 
     function ($scope, $rootScope, $window, $http, $q, $timeout, AuthService) {
 
-    $timeout(function() {
-      if (AuthService.isAuthenticated()) {
-        loadTabs();
-        getCampaignData();
-      }
-      else {
-        $('#timeoutModal').modal().show()
-      }
-    }, 600);
+      $timeout(function() {
+        if (AuthService.isAuthenticated()) {
+          loadTabs();
+          getCampaignData();
+        }
+        else {
+          $('#timeoutModal').modal().show()
+        }
+      }, 600);
 
     function loadTabs() {
       $q.when($scope.connection.getWebsiteMetrics())
@@ -99,4 +99,4 @@ angular.module('locationPluginApp')
       };
     }
 
-  }]);
+    }]);
