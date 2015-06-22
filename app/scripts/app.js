@@ -29,6 +29,10 @@ angular
         templateUrl: 'views/localWebsite.html',
         controller: 'LocalWebsiteController'
       })
+      .when('/profile', {
+        templateUrl: 'views/profile.html',
+        controller: 'ProfileController'
+      })
       .otherwise({
         redirectTo: '/'
       });
@@ -45,8 +49,9 @@ angular
     function($scope, $rootScope, $http, $location, Session, AuthService, AUTH_EVENTS) {
 
     $scope.menu = [
-      {label: 'Campaigns', route: '/'},
-      {label: 'Local Website', route: '/localWebsite'},
+      {label: 'Campaigns', route: '/', show: false},
+      {label: 'Local Website', route: '/localWebsite', show: false},
+      {label: 'Profile', route: '/profile', show: false}
     ];
 
     $scope.menuActive = '/';
@@ -130,7 +135,7 @@ angular
 
     authService.login = function (credentials) {
       if (testFlag) {
-        var url = 'http://localhost[:XXXX]/[PATH]/app/scripts/libraries/clientAuth.php';
+        var url = 'http://localhost:8888/local-partner-connect/app/scripts/libraries/clientAuth.php';
         return $http({
           method: 'POST',
           url: url,
