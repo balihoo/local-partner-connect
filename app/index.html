@@ -14,7 +14,6 @@
   <!-- endbuild -->
   <!-- build:css(.tmp) styles/main.css -->
   <link rel="stylesheet" href="styles/main.css">
-  <link rel="stylesheet" href="styles/FormRender.css">
   <!-- endbuild -->
 </head>
 <body class="h100" ng-app="locationPluginApp" ng-controller="ApplicationController">
@@ -41,9 +40,6 @@
   <div class="h100" ng-view=""></div>
 </div>
 
-<!-- Balihoo Local Partner Connect API - Dev Environment -->
-<script src="https://bac.dev.balihoo-cloud.com/assets/javascript/localDataAPI/localDataAPI.js"></script>
-
 <!-- build:js(.) scripts/oldieshim.js -->
 <!--[if lt IE 9]>
 <script src="bower_components/es5-shim/es5-shim.js"></script>
@@ -69,8 +65,13 @@
 <!-- endbower -->
 <!-- endbuild -->
 
+
+<!-- Balihoo Local Partner Connect API - Dev Environment -->
+<script src="https://bac.dev.balihoo-cloud.com/assets/javascript/localDataAPI/localDataAPI.js"></script>
+<!-- Balihoo Form Builder Form Rendering Library - Dev Environment -->
+<script src="https://fb.dev.balihoo-cloud.com/lib/FormRender.js"></script>
+
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
-<script src="scripts/libraries/FormRender.js"></script>
 <script src="scripts/app.js"></script>
 <script src="scripts/controllers/campaigns.js"></script>
 <script src="scripts/controllers/localWebsite.js"></script>
