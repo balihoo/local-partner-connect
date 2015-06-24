@@ -34,7 +34,7 @@ Finally, you'll need to run a local Apache server for `localhost` development. [
 * SASS: http://sass-lang.com
 
 ## Installation
-From the CLI, at the root of this project, run  `npm install` or `sudo npm install` if you have permission errors. If you continue to have errors, be sure you have install all of the [Requirements](#requirements).
+From the CLI, at the root of this project, run  `npm install` or `sudo npm install` if you have permission errors. If you continue to have errors, be sure you have installed all of the [Requirements](#requirements).
 
 ## Local Testing
 This app includes an `authService` for convenience of local testing. Open `./app/scripts/app.js` and modify the following `var` to include the localhost port number (if necessary) the local path from the Apache root.
