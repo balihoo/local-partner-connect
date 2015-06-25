@@ -1,0 +1,105 @@
+<!--
+    *
+    * Campaigns Tab Template
+    *
+ -->
+<div class="container pull-left h100">
+  <div class="tab-content h100">
+    <!-- Start Campaigns Tab Pane -->
+    <div role="tabpanel" class="tab-pane active h100" id="campaigns">
+      <div class="row h100">
+        <!-- Start Campaigns List Group: Used to select Campaign -->
+        <div class="col-sm-4 col-campaigns">
+          <div class="list-group">
+            <!-- Campaign List Group Item -->
+            <a class="campaign-nav list-group-item animate-repeat-campaigns" ng-repeat="campaign in campaigns | orderBy: 'id'" ng-click="loadTactics(campaign.id); $parent.selected = campaign; gaEvent('Switch Campaigns')" ng-class="{active: selected == campaign}">
+
+              <h4 class="list-group-item-heading">{{campaign.title}}</h4>
+              <div class="list-group-item-text">
+                <p>Start: {{campaign.start | date: 'MMM dd, yyyy'}}<br>
+                End: {{campaign.end | date: 'MMM dd, yyyy'}}</p>
+              </div>
+
+            </a><!-- End Campaign List Group Item-->
+          </div>
+        </div><!-- End Campaigns List Group: Used to select Campaign -->
+        <!-- Start Campaign Main Content -->
+        <div class="col-sm-8 col-tactics">
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane campaign-content active animate-repeat-tactics" id="{{campaign.id}}" ng-repeat="tactic in tactics | orderBy: 'id'">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <p class="panel-title">{{tactic.title}}</p>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <p class="no-space-after"><span class="label label-primary">{{tactic.channel}}</span></p>
+                    </div>
+                    <div class="col-sm-8">
+                      <p class="no-space-after text-right"><small>
+                        {{tactic.start | date: 'MMM dd, yyyy'}} - {{tactic.end | date: 'MMM dd, yyyy'}}
+                      </small></p>
+                    </div>
+                    <div class="col-sm-12">
+                        <hr>
+                    </div>
+
+                    <div class="col-sm-12 col-xs-12" ng-switch on="tactic.channel">
+                        <div class="row" ng-switch-when="Email">
+                            <div class="col-sm-4 col-xs-6 text-center" tooltip data-toggle="tooltip" data-placement="bottom" title="Sent: the number of emails sent out on your behalf">
+                                <p class="bh-metric bh-metric-sent">{{tactic.sends}}
+                                    <span class="bh-metric-label">Sent</span></p>
+                            </div>
+                            <div class="col-sm-4 col-xs-6 text-center" tooltip data-toggle="tooltip" data-placement="bottom" title="Opened: The number of emails that were viewed by their recipients">
+                                <p class="bh-metric bh-metric-open">{{tactic.opens}}
+                                    <span class="bh-metric-label">Opened</span></p>
+                            </div>
+                            <div class="col-sm-4 col-xs-6 text-center" tooltip data-toggle="tooltip" data-placement="bottom" title="Clicked: the number of times people clicked a link in the email">
+                                <p class="bh-metric bh-metric-clicks">{{tactic.clicks}}
+                                    <span class="bh-metric-label">Clicked</span></p>
+                            </div>
+                        </div>
+                        <div class="row" ng-switch-when="Display">
+                            <div class="col-sm-4 col-xs-6 text-center" tooltip data-toggle="tooltip" data-placement="bottom" title="Impressions: the number of times your ad was displayed to potential customers">
+                                <p class="bh-metric bh-metric-impressions">{{tactic.impressions}}
+                                    <span class="bh-metric-label">Impressions</span></p>
+                            </div>
+                            <div class="col-sm-4 col-xs-6 text-center" tooltip data-toggle="tooltip" data-placement="bottom" title="Spend: the total cost of purchasing clicks">
+                                <p class="bh-metric bh-metric-cost">${{tactic.spend}}
+                                    <span class="bh-metric-label">Cost</span></p>
+                            </div>
+                        </div>
+                        <div class="row" ng-switch-when="Paid Search">
+                            <div class="col-sm-4 col-xs-6 text-center" tooltip data-toggle="tooltip" data-placement="bottom" title="Clicks: the number of times potential customers clicked your ad">
+                                <p class="bh-metric bh-metric-clicks">{{tactic.clicks}}
+                                    <span class="bh-metric-label">Clicks</span></p>
+                            </div>
+                            <div class="col-sm-4 col-xs-6 text-center" tooltip data-toggle="tooltip" data-placement="bottom" title="Spend: the total cost of purchasing clicks">
+                                <p class="bh-metric bh-metric-cost">${{tactic.spend}}
+                                    <span class="bh-metric-label">Cost</span></p>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <hr>
+                      <small><p class="no-space-after">{{tactic.description}}</p></small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!-- End Campaign Main Content -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,248 @@
+//
+// Variables
+// --------------------------------------------------
+
+
+//== Colors
+//
+//## Gray and brand colors for use across Bootstrap.
+
+$brand-primary:         #567574;
+$brand-success:         #78a09e;
+$brand-info:            #bfb672;
+$brand-warning:         #efc75e;
+$brand-danger:          #e2574c;
+
+$bhoo-light-gray:       #e8e2e3;
+$bhoo-lighter-gray:       #f5f1f2;
+
+//== Scaffolding
+//
+//## Settings for some of the most global styles.
+
+$text-color:            #59595b;
+
+//== Typography
+//
+//## Font, line-height, and color for body text, headings, and more.
+
+$font-family-sans-serif:  "Lato", Helvetica, Arial, sans-serif;
+
+
+//== Iconography
+//
+//## Specify custom location and filename of the included Glyphicons icon font. Useful for those including Bootstrap via Bower.
+
+
+//== Components
+//
+//## Define common padding and border radius sizes and more. Values based on 14px text and 1.428 line-height (~20px to start).
+
+$component-active-bg: #78a09e;
+
+
+//== Tables
+//
+//## Customizes the `.table` component with basic values, each used across all table variations.
+
+$table-cell-padding: 15px;
+$table-condensed-cell-padding: 9px;
+
+$table-border-color: $bhoo-light-gray;
+$table-bg-accent: $bhoo-lighter-gray;
+$table-bg-hover: $bhoo-light-gray;
+
+//== Buttons
+//
+//## For each of Bootstrap's buttons, define text, background and border color.
+
+$btn-default-border: $bhoo-light-gray;
+
+
+//== Forms
+//
+//##
+
+$input-bg-disabled: $bhoo-light-gray;
+$input-border: $bhoo-light-gray;
+$input-group-addon-bg: $bhoo-lighter-gray;
+
+//== Dropdowns
+//
+//## Dropdown menu container and contents.
+
+$dropdown-border:    $bhoo-light-gray;
+
+
+//-- Z-index master list
+//
+// Warning: Avoid customizing these values. They're used for a bird's eye view
+// of components dependent on the z-axis and are designed to all work together.
+//
+// Note: These variables are not generated into the Customizer.
+
+
+//== Media queries breakpoints
+//
+//## Define the breakpoints at which your layout will change, adapting to different screen sizes.
+
+$screen-sm: 600px;
+
+//== Grid system
+//
+//## Define your custom responsive grid.
+$grid-gutter-width: 30px;
+$container-tablet: (550px + $grid-gutter-width);
+
+//== Container sizes
+//
+//## Define the maximum width of `.container` for different screen sizes.
+
+
+//== Navbar
+//
+//##
+
+$navbar-default-bg:              $bhoo-lighter-gray;
+$navbar-default-link-active-bg:  $bhoo-light-gray;
+$navbar-default-border:          transparent;
+
+//== Navs
+//
+//##
+
+$nav-link-hover-bg:              $bhoo-light-gray;
+
+//== Pagination
+//
+//##
+
+
+//== Pager
+//
+//##
+
+$pagination-border: $bhoo-light-gray;
+$pagination-hover-bg: $bhoo-lighter-gray;
+$pagination-active-bg: #78a09e;
+
+
+//== Jumbotron
+//
+//##
+
+$jumbotron-bg: $bhoo-lighter-gray;
+
+
+//== Form states and alerts
+//
+//## Define colors for form feedback states and, by default, alerts.
+
+$state-success-text:             #567574;
+$state-success-bg:               #e9f4f2;
+$state-success-border:           darken(adjust-hue($state-success-bg, -10), 10%);
+
+$state-info-text:                #a59b63;
+$state-info-bg:                  #f4f0dc;
+$state-info-border:              darken(adjust-hue($state-info-bg, -10), 7%);
+
+$state-warning-text:             #ca9f30;
+$state-warning-bg:               #f9f0de;
+$state-warning-border:           darken(adjust-hue($state-warning-bg, -10), 5%);
+
+$state-danger-text:              #cb4e44;
+$state-danger-bg:                #f7d7d7;
+$state-danger-border:            darken(adjust-hue($state-danger-bg, -10), 5%);
+
+
+//== Tooltips
+//
+//##
+
+
+//== Popovers
+//
+//##
+
+
+//== Labels
+//
+//##
+
+
+//== Modals
+//
+//##
+
+
+//== Alerts
+//
+//## Define alert colors, border radius, and padding.
+
+
+//== Progress bars
+//
+//##
+
+
+//== List group
+//
+//##
+
+$list-group-border:      $bhoo-lighter-gray;
+
+//== Panels
+//
+//##
+
+$panel-default-text: $text-color;
+$panel-default-border: $bhoo-light-gray;
+$panel-default-heading-bg: $bhoo-lighter-gray;
+$panel-footer-bg: $bhoo-lighter-gray;
+
+
+//== Thumbnails
+//
+//##
+
+
+//== Wells
+//
+//##
+
+$well-bg: $bhoo-lighter-gray;
+$well-border: $bhoo-light-gray;
+
+//== Badges
+//
+//##
+
+$badge-bg: #e2574c;
+
+
+//== Breadcrumbs
+//
+//##
+
+$breadcrumb-bg: $bhoo-lighter-gray;
+$breadcrumb-color: $text-color;
+
+
+//== Carousel
+//
+//##
+
+
+//== Close
+//
+//##
+
+
+//== Code
+//
+//##
+
+
+//== Type
+//
+//##

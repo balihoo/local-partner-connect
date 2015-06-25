@@ -1,0 +1,108 @@
+<!doctype html>
+<html class="no-js h100">
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+  <!-- build:css(.) styles/vendor.css -->
+  <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/c3/c3.css" />
+  <!-- endbower -->
+  <!-- endbuild -->
+  <!-- build:css(.tmp) styles/main.css -->
+  <link rel="stylesheet" href="styles/main.css">
+  <!-- endbuild -->
+</head>
+<body class="h100" ng-app="locationPluginApp" ng-controller="ApplicationController">
+<!-- Add your site or application content here -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#primary-navigation">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="primary-navigation">
+        <ul class="nav navbar-nav">
+          <li ng-repeat="item in menu" ng-class="{active: item.route == menuActive}" ng-show="item.show"><a class="animate-repeat-campaigns" ng-href="#{{item.route}}">{{item.label}}</a></li>
+        </ul>
+      </div>
+    </div>
+</nav>
+
+<div class="container h100">
+  <div class="h100" ng-view=""></div>
+</div>
+
+<!-- build:js(.) scripts/oldieshim.js -->
+<!--[if lt IE 9]>
+<script src="bower_components/es5-shim/es5-shim.js"></script>
+<script src="bower_components/json3/lib/json3.js"></script>
+<![endif]-->
+<!-- endbuild -->
+
+<!-- build:js(.) scripts/vendor.js -->
+<!-- bower:js -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-aria/angular-aria.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angular-messages/angular-messages.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/angular-touch/angular-touch.js"></script>
+<script src="bower_components/d3/d3.js"></script>
+<script src="bower_components/c3/c3.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
+
+
+<!-- Balihoo Local Partner Connect API - Dev Environment -->
+<script src="https://bac.dev.balihoo-cloud.com/assets/javascript/localDataAPI/localDataAPI.js"></script>
+<!-- Balihoo Form Builder Form Rendering Library - Dev Environment -->
+<script src="https://fb.dev.balihoo-cloud.com/lib/FormRender.js"></script>
+
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
+<script src="scripts/app.js"></script>
+<script src="scripts/controllers/campaigns.js"></script>
+<script src="scripts/controllers/localWebsite.js"></script>
+<script src="scripts/controllers/profile.js"></script>
+<!-- endbuild -->
+
+<script>
+    $(document).ready(function(){
+        var element = $('body[ng-controller="ApplicationController"]');
+        var scope = angular.element(element).scope();
+        var brandKey = scope.brandKey;
+        var locationId = scope.locationId;
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-419058-26', 'auto');
+        ga('set', {
+          'brandkey': brandKey,
+          'locationID': locationId
+          });
+        ga('send', 'pageview');
+    });
+</script>
+
+</div>
+</body>
+<modal id="timeoutModal" title="Session Expired" data-backdrop="static" type="alert alert-danger" visible="showTimeoutModal">
+    <p>Your session has expired due to inactivity. Please reload the page in your browser.</p>
+</modal>
+</html>
