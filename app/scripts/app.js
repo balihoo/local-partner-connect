@@ -121,7 +121,7 @@ angular
       this.config = {};
       this.clientId = clientId;
       this.clientApiKey = clientApiKey;
-      this.config.baseUrl = 'https://bac.dev.balihoo-cloud.com';  // Dev environment LPC API
+      this.config.baseUrl = 'http://bac.stage.balihoo-cloud.com';  // Stage environment LPC API
       this.connection = new balihoo.LocalConnection(clientId, clientApiKey, this.config);
     };
     this.destroy = function () {
