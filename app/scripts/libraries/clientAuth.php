@@ -2,7 +2,7 @@
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Headers: X-Requested-With');
 
-$url = 'https://bac.dev.balihoo-cloud.com/localdata/v1.0/genClientAPIKey';
+$url = 'http://bac.balihoo-cloud.com/localdata/v1.0/genClientAPIKey';
 
 $ch = curl_init();
 
