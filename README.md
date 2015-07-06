@@ -1,11 +1,17 @@
 # Local Partner Connect
 The _Local Partner Connect_ (LPC) is a javascript application that serves as a user interface for Balihoo's Local Connect Client API (https://github.com/balihoo/local-connect-client).
 
+**Latest hosted build:**
+```html
+http://cdn.balihoohosting.com/local-partner-connect/v1.1/#/
+```
+
 ## Contents
 * [Overview](#overview)
 * [Requirements](#requirements)
 * [Installation](#installation)
 * [Local Testing](#local-testing)
+* [Distributed Application](#distributed-application)
 
 ## Overview
 The LPC is available to use _as is_ or to use as a reference application for your own development purposes. It is intended to be used with the Balihoo _Local Marketing Cloud_, specifically the local data API.
