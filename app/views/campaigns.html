@@ -52,35 +52,35 @@
 
                     <div class="col-sm-12 col-xs-12" ng-switch on="tactic.channel">
                         <div class="row" ng-switch-when="Email">
-                            <div class="col-sm-4 col-xs-6 text-center" tooltip data-toggle="tooltip" data-placement="bottom" title="Sent: the number of emails sent out on your behalf">
-                                <p class="bh-metric bh-metric-sent">{{tactic.sends}}
+                          <div class="col-sm-4 col-xs-6 text-center" tooltip="Sent: the number of emails sent out on your behalf" tooltip-trigger="mouseenter" tooltip-placement="bottom">
+                                <p class="bh-metric bh-metric-sent">{{tactic.sends | number}}
                                     <span class="bh-metric-label">Sent</span></p>
                             </div>
-                            <div class="col-sm-4 col-xs-6 text-center" tooltip data-toggle="tooltip" data-placement="bottom" title="Opened: The number of emails that were viewed by their recipients">
-                                <p class="bh-metric bh-metric-open">{{tactic.opens}}
+                            <div class="col-sm-4 col-xs-6 text-center" tooltip="Opened: The number of emails that were viewed by their recipients" tooltip-trigger="mouseenter" tooltip-placement="bottom">
+                                <p class="bh-metric bh-metric-open">{{tactic.opens | number}}
                                     <span class="bh-metric-label">Opened</span></p>
                             </div>
-                            <div class="col-sm-4 col-xs-6 text-center" tooltip data-toggle="tooltip" data-placement="bottom" title="Clicked: the number of times people clicked a link in the email">
-                                <p class="bh-metric bh-metric-clicks">{{tactic.clicks}}
+                            <div class="col-sm-4 col-xs-6 text-center" tooltip="Clicked: the number of times people clicked a link in the email" tooltip-trigger="mouseenter" tooltip-placement="bottom">
+                                <p class="bh-metric bh-metric-clicks">{{tactic.clicks | number}}
                                     <span class="bh-metric-label">Clicked</span></p>
                             </div>
                         </div>
                         <div class="row" ng-switch-when="Display">
-                            <div class="col-sm-4 col-xs-6 text-center" tooltip data-toggle="tooltip" data-placement="bottom" title="Impressions: the number of times your ad was displayed to potential customers">
-                                <p class="bh-metric bh-metric-impressions">{{tactic.impressions}}
+                            <div class="col-sm-4 col-xs-6 text-center" tooltip="Impressions: the number of times your ad was displayed to potential customers" tooltip-trigger="mouseenter" tooltip-placement="bottom">
+                                <p class="bh-metric bh-metric-impressions">{{tactic.impressions | number}}
                                     <span class="bh-metric-label">Impressions</span></p>
                             </div>
-                            <div class="col-sm-4 col-xs-6 text-center" tooltip data-toggle="tooltip" data-placement="bottom" title="Spend: the total cost of purchasing clicks">
+                            <div class="col-sm-4 col-xs-6 text-center" tooltip="Spend: the total cost of purchasing clicks" tooltip-trigger="mouseenter" tooltip-placement="bottom">
                                 <p class="bh-metric bh-metric-cost">${{tactic.spend}}
                                     <span class="bh-metric-label">Cost</span></p>
                             </div>
                         </div>
                         <div class="row" ng-switch-when="Paid Search">
-                            <div class="col-sm-4 col-xs-6 text-center" tooltip data-toggle="tooltip" data-placement="bottom" title="Clicks: the number of times potential customers clicked your ad">
-                                <p class="bh-metric bh-metric-clicks">{{tactic.clicks}}
+                            <div class="col-sm-4 col-xs-6 text-center" tooltip="Clicks: the number of times potential customers clicked your ad" tooltip-trigger="mouseenter" tooltip-placement="bottom">
+                                <p class="bh-metric bh-metric-clicks">{{tactic.clicks | number}}
                                     <span class="bh-metric-label">Clicks</span></p>
                             </div>
-                            <div class="col-sm-4 col-xs-6 text-center" tooltip data-toggle="tooltip" data-placement="bottom" title="Spend: the total cost of purchasing clicks">
+                            <div class="col-sm-4 col-xs-6 text-center" tooltip="Spend: the total cost of purchasing clicks" tooltip-trigger="mouseenter" tooltip-placement="bottom">
                                 <p class="bh-metric bh-metric-cost">${{tactic.spend}}
                                     <span class="bh-metric-label">Cost</span></p>
                             </div>
@@ -102,4 +102,3 @@
     </div>
   </div>
 </div>
-
