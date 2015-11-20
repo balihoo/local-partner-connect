@@ -121,7 +121,7 @@ angular
       this.config = {};
       this.clientId = clientId;
       this.clientApiKey = clientApiKey;
-      this.config.baseUrl = 'http://bac.balihoo-cloud.com';
+      this.config.baseUrl = 'https://balihoo-bac-prod.elasticbeanstalk.com';
       this.connection = new balihoo.LocalConnection(clientId, clientApiKey, this.config);
     };
     this.destroy = function () {
