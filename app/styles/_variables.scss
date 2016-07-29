@@ -87,6 +87,9 @@ $dropdown-border:    $bhoo-light-gray;
 //## Define the breakpoints at which your layout will change, adapting to different screen sizes.
 
 $screen-sm: 600px;
+$screen-sm-min: 768px !default;
+$screen-md-min: 992px !default;
+$screen-lg-min: 1200px !default;
 
 //== Grid system
 //
