@@ -22,6 +22,7 @@ angular.module('locationPluginApp')
     var model;
     var outputData;
     var saveProfileButton = $('#saveProfileButton');
+    $scope.menu[2].show = true;
     saveProfileButton.click(sendData);
 
     $timeout(function() {
